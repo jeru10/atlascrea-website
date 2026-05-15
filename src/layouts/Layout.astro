@@ -150,26 +150,30 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
       // ═══════════ LENIS SMOOTH SCROLL ═══════════
       (function() {
+        // Fallback: if Lenis fails to load within 3s, remove overflow hidden
+        var fallbackTimer = setTimeout(function() {
+          document.documentElement.classList.remove('lenis');
+          console.warn('Lenis timeout - native scroll restored');
+        }, 3000);
+        
         var LenisClass = window.Lenis;
         if (typeof LenisClass !== 'undefined' && LenisClass) {
+          clearTimeout(fallbackTimer);
           try {
-            // Enable Lenis mode: overflow hidden on html/body
             document.documentElement.classList.add('lenis');
             
             var lenis = new LenisClass({
-              duration: 0.7,
+              duration: 0.3,
               easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
               smoothWheel: true,
-              wheelMultiplier: 0.8,
-              touchMultiplier: 1.2,
+              wheelMultiplier: 2,
+              touchMultiplier: 1.5,
             });
             
-            // Store on window so Three.js cursor etc can hook into same RAF
             window.__lenis = lenis;
             
             function raf(time) {
               lenis.raf(time);
-              // Signal Three.js that RAF frame is available (throttled)
               if (window.__threeRaf) {
                 window.__threeRaf(time);
               }
@@ -181,7 +185,8 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
             document.documentElement.classList.remove('lenis');
           }
         } else {
-          console.warn('Lenis not loaded');
+          console.warn('Lenis not loaded - native scroll');
+          document.documentElement.classList.remove('lenis');
         }
       })();
 
