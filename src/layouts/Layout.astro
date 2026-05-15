@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppBtn from '../components/WhatsAppBtn.astro';
+import SEO from '../components/SEO.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+const { title, description, ogImage } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <SEO title={title} description={description} ogImage={ogImage} />
+  </head>
+  <body class="font-['Inter'] bg-brand-navy text-white antialiased">
+    <Header />
+    <main class="min-h-screen">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppBtn />
+    <script>
+      // Intersection Observer for fade-in sections
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.section-fade').forEach(el => observer.observe(el));
+      
+      // Stagger children animation
+      document.querySelectorAll('.stagger-children').forEach(parent => {
+        const children = parent.children;
+        const staggerObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              Array.from(children).forEach((child, i) => {
+                child.style.transitionDelay = `${i * 0.1}s`;
+                child.classList.add('visible');
+              });
+              staggerObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        staggerObserver.observe(parent);
+      });
+      
+      // Sticky header
+      const header = document.querySelector('header');
+      if (header) {
+        const headerObserver = new IntersectionObserver(
+          ([e]) => {
+            header.classList.toggle('scrolled', !e.isIntersecting);
+          },
+          { threshold: [0], rootMargin: '-80px 0px 0px 0px' }
+        );
+        headerObserver.observe(document.body);
+      }
+        
+        // Counter animation
+        document.querySelectorAll('.counter-number').forEach(counter => {
+          const target = parseInt(counter.dataset.target);
+          const duration = 2000;
+          const step = Math.max(1, Math.floor(target / 60));
+          let current = 0;
+          const increment = () => {
+            current += step;
+            if (current >= target) {
+              counter.textContent = target;
+              return;
+            }
+            counter.textContent = current;
+            requestAnimationFrame(() => setTimeout(increment, 30));
+          };
+          const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                increment();
+                counterObserver.unobserve(entry.target);
+              }
+            });
+          });
+          counterObserver.observe(counter);
+        });
+      });
+    </script>
+  </body>
+</html>

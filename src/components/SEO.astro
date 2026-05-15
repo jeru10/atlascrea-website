@@ -1,0 +1,58 @@
+---
+const { title, description, ogImage } = Astro.props;
+const siteUrl = 'https://www.atlascrea.com';
+const defaultTitle = 'ATLAS CREA | Agence de Communication 360° à Marrakech';
+const defaultDesc = 'ATLAS CREA est une agence de communication 360° à Marrakech. Branding, sites web, social media, SEO, print et publicité digitale. Solutions sur-mesure à prix startup.';
+---
+
+<!-- Primary Meta Tags -->
+<title>{title || defaultTitle}</title>
+<meta name="title" content={title || defaultTitle} />
+<meta name="description" content={description || defaultDesc} />
+<meta name="keywords" content="agence communication Marrakech, agence digitale Maroc, branding Marrakech, création site web Maroc, SEO Maroc, social media Marrakech" />
+<meta name="author" content="ATLAS CREA" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={siteUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={siteUrl} />
+<meta property="og:title" content={title || defaultTitle} />
+<meta property="og:description" content={description || defaultDesc} />
+<meta property="og:image" content={ogImage || `${siteUrl}/images/og-image.jpg`} />
+<meta property="og:site_name" content="ATLAS CREA" />
+<meta property="og:locale" content="fr_FR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={siteUrl} />
+<meta property="twitter:title" content={title || defaultTitle} />
+<meta property="twitter:description" content={description || defaultDesc} />
+<meta property="twitter:image" content={ogImage || `${siteUrl}/images/og-image.jpg`} />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ATLAS CREA",
+  "url": siteUrl,
+  "logo": `${siteUrl}/favicon.svg`,
+  "description": defaultDesc,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Marrakech",
+    "addressCountry": "MA"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+212-6-05-04-85-14",
+    "email": "contact@atlascrea.com",
+    "contactType": "sales",
+    "availableLanguage": ["French", "Arabic", "English"]
+  },
+  "sameAs": [
+    "https://www.facebook.com/atlascrea",
+    "https://www.instagram.com/atlascrea",
+    "https://www.linkedin.com/company/atlascrea"
+  ]
+}}></script>

@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { services, statsData, testimonials, certifications } from '../data/siteData';
+---
+
+<Layout title="Services — ATLAS CREA | Agence de Communication 360°" description="Découvrez nos 6 services : Branding, Sites Web, Social Media, Print, SEO et Publicité Digitale. Solutions sur-mesure à Marrakech.">
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20 gradient-hero relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-purple/20 blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-brand-cyan/10 blur-[100px]"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h1 class="text-4xl sm:text-6xl font-bold text-white mb-6">Nos <span class="gradient-text">Services</span></h1>
+      <p class="text-xl text-white/60 max-w-2xl mx-auto">Des solutions complètes pour votre communication digitale et physique</p>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="py-8 border-y border-white/5 overflow-hidden">
+    <div class="marquee-anim flex whitespace-nowrap">
+      {[1,2].map(_ => (
+        <div class="flex gap-12 items-center mx-6">
+          <span class="text-2xl font-bold text-white/10">BRANDING</span>
+          <span class="w-2 h-2 rounded-full bg-brand-purple/30"></span>
+          <span class="text-2xl font-bold text-white/10">SITES WEB</span>
+          <span class="w-2 h-2 rounded-full bg-brand-purple/30"></span>
+          <span class="text-2xl font-bold text-white/10">SOCIAL MEDIA</span>
+          <span class="w-2 h-2 rounded-full bg-brand-purple/30"></span>
+          <span class="text-2xl font-bold text-white/10">SE</span>
+          <span class="w-2 h-2 rounded-full bg-brand-purple/30"></span>
+          <span class="text-2xl font-bold text-white/10">PUBLICITÉ</span>
+          <span class="w-2 h-2 rounded-full bg-brand-purple/30"></span>
+          <span class="text-2xl font-bold text-white/10">PRINT</span>
+          <span class="w-2 h-2 rounded-full bg-brand-purple/30"></span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Services Detail -->
+  <section class="py-20 bg-brand-navy">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-24">
+        {services.map((service, idx) => (
+          <div id={service.id} class="section-fade flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+            <div class={`flex-1 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-purple/30 to-brand-cyan/20 flex items-center justify-center mb-6">
+                {idx === 0 && <svg class="w-8 h-8 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>}
+                {idx === 1 && <svg class="w-8 h-8 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>}
+                {idx === 2 && <svg class="w-8 h-8 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>}
+                {idx === 3 && <svg class="w-8 h-8 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>}
+                {idx === 4 && <svg class="w-8 h-8 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>}
+                {idx === 5 && <svg class="w-8 h-8 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>}
+              </div>
+              <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">{service.title}</h2>
+              <p class="text-white/60 text-lg leading-relaxed mb-6">{service.longDesc}</p>
+              <div class="flex flex-wrap gap-3">
+                {service.items.map(item => (
+                  <span class="px-4 py-2 rounded-full glass text-sm text-white/70">{item}</span>
+                ))}
+              </div>
+            </div>
+            <div class={`flex-1 ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
+              <div class="glass rounded-3xl p-8 md:p-10 card-3d h-full">
+                <h3 class="text-xl font-bold text-white mb-6">Pourquoi ce service ?</h3>
+                <ul class="space-y-4">
+                  <li class="flex gap-3">
+                    <svg class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    <span class="text-white/60 text-sm">Expertise reconnue et certifications officielles</span>
+                  </li>
+                  <li class="flex gap-3">
+                    <svg class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    <span class="text-white/60 text-sm">Solutions sur-mesure adaptées à votre budget</span>
+                  </li>
+                  <li class="flex gap-3">
+                    <svg class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    <span class="text-white/60 text-sm">Accompagnement de A à Z avec un interlocuteur unique</span>
+                  </li>
+                  <li class="flex gap-3">
+                    <svg class="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    <span class="text-white/60 text-sm">Résultats mesurables et optimisation continue</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-16 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-purple/5 to-brand-navy"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {statsData.map(stat => (
+          <div class="text-center p-6 glass rounded-2xl section-fade">
+            <div class="text-3xl sm:text-4xl font-bold gradient-text mb-2">
+              {stat.prefix}<span class="counter-number" data-target={stat.value}>0</span>{stat.suffix}
+            </div>
+            <p class="text-white/50 text-sm">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-brand-navy">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center section-fade">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Vous avez un projet en tête ?</h2>
+      <p class="text-white/50 text-lg mb-8">Parlons-en autour d'un café virtuel !</p>
+      <a href="/contact" class="btn-primary text-base !px-10 !py-4">Contactez-nous</a>
+    </div>
+  </section>
+</Layout>

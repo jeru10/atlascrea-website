@@ -1,0 +1,411 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { services, portfolioWebsites, testimonials, statsData } from '../data/siteData';
+---
+
+<Layout title="ATLAS CREA | Agence de Communication 360° à Marrakech" description="ATLAS CREA est une agence de communication 360° à Marrakech. Branding, sites web, social media, SEO, print et publicité digitale.">
+
+  <!-- ══════ HERO — 3D WOW ══════ -->
+  <section class="relative min-h-screen flex items-center bg-brand-navy pt-20 overflow-hidden">
+    <!-- 3D Canvas Container -->
+    <div id="hero-3d-container" class="absolute inset-0 z-0"></div>
+    
+    <!-- Gradient overlays -->
+    <div class="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-brand-navy via-brand-navy/80 to-transparent z-[1]"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-brand-navy to-transparent z-[1]"></div>
+    
+    <!-- Animated gradient orbs (CSS fallback + enhancement) -->
+    <div class="absolute top-1/4 left-1/3 w-72 h-72 rounded-full bg-brand-purple/20 blur-[120px] animate-pulse-slow z-[1]"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-brand-cyan/10 blur-[150px] animate-pulse-slower z-[1]"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-brand-blue/8 blur-[120px] animate-spin-slow z-[1]"></div>
+
+    <!-- Floating badges -->
+    <div class="absolute top-32 right-[15%] z-[2] animate-float-1 hidden lg:block">
+      <div class="glass rounded-xl px-4 py-3 text-sm">
+        <span class="text-brand-cyan font-bold">50+</span>
+        <span class="text-white/40 ml-1">projets livrés</span>
+      </div>
+    </div>
+    <div class="absolute bottom-36 right-[10%] z-[2] animate-float-2 hidden lg:block">
+      <div class="glass rounded-xl px-4 py-3 text-sm">
+        <span class="text-brand-cyan font-bold">4.9★</span>
+        <span class="text-white/40 ml-1">satisfaction client</span>
+      </div>
+    </div>
+    <div class="absolute top-1/3 right-[20%] z-[2] animate-float-3 hidden lg:block">
+      <div class="w-3 h-3 rounded-full bg-brand-cyan shadow-lg shadow-brand-cyan/50 animate-ping-slow"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div class="max-w-4xl">
+        <!-- Animated badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-brand-cyan mb-8 relative overflow-hidden group">
+          <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
+          <span class="relative z-10">Agence de Communication 360°</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-brand-purple/20 to-brand-cyan/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+        
+        <!-- Main heading with reveal animation -->
+        <h1 id="hero-title" class="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[0.95] text-white">
+          <span class="block overflow-hidden">
+            <span class="block hero-reveal">Agence de</span>
+          </span>
+          <span class="block overflow-hidden mt-2">
+            <span class="block hero-reveal gradient-text" style="animation-delay: 0.2s">Communication</span>
+          </span>
+          <span class="block overflow-hidden mt-2">
+            <span class="block hero-reveal" style="animation-delay: 0.4s">360°</span>
+          </span>
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="text-lg sm:text-xl text-white/40 max-w-2xl mt-8 leading-relaxed hero-fade" style="animation-delay: 0.8s">
+          Branding, sites web, réseaux sociaux, SEO, publicité digitale & print — 
+          un seul interlocuteur pour votre transformation digitale.
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-10 hero-fade" style="animation-delay: 1s">
+          <a href="/contact" class="btn-primary text-base text-center group relative overflow-hidden">
+            <span class="relative z-10">Démarrer un projet</span>
+            <span class="absolute inset-0 bg-gradient-to-r from-brand-purple via-brand-blue to-brand-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+          </a>
+          <a href="/portfolio" class="btn-secondary text-base text-center group">
+            <span>Voir nos réalisations →</span>
+          </a>
+        </div>
+
+        <!-- Stats row -->
+        <div class="flex flex-wrap gap-8 sm:gap-12 mt-16 pt-12 border-t border-white/5 hero-fade" style="animation-delay: 1.2s">
+          {statsData.map((stat, i) => (
+            <div style={`transition-delay: ${1.4 + i * 0.15}s`} class="hero-fade">
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl sm:text-4xl font-bold text-white">{stat.prefix}</span>
+                <span class="text-3xl sm:text-4xl font-bold gradient-text counter-number" data-target={stat.value}>0</span>
+                <span class="text-3xl sm:text-4xl font-bold text-white">{stat.suffix}</span>
+              </div>
+              <p class="text-white/30 text-xs sm:text-sm mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ [01] INTRO ══════ -->
+  <section class="py-28 lg:py-36 bg-brand-navy border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-fade max-w-4xl">
+        <span class="text-white/20 text-sm font-mono tracking-wider">[01] Intro</span>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mt-6 leading-tight">
+          Une vision distincte à chaque projet, fusionnant <span class="gradient-text">stratégie + créativité</span> pour des marques audacieuses.
+        </h2>
+        <p class="text-white/40 text-lg mt-6 max-w-2xl leading-relaxed">
+          Agence basée à Marrakech. Nous construisons des identités digitales où la stratégie rencontre l'expression — 
+          fusionnant créativité et intention pour des résultats concrets.
+        </p>
+        <a href="/about" class="inline-flex items-center gap-2 text-white/50 hover:text-brand-cyan transition-colors mt-8 text-sm group">
+          En savoir plus
+          <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ [02] PROJECTS ══════ -->
+  <section class="py-28 lg:py-36 bg-brand-navy border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-fade mb-16">
+        <span class="text-white/20 text-sm font-mono tracking-wider">[02] Projects</span>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mt-6">
+          Réalisations <span class="gradient-text">récentes</span>
+        </h2>
+        <p class="text-white/40 mt-4 max-w-xl">
+          Nous concevons des identités visuelles et des expériences digitales qui se ressentent — audacieuses, raffinées, centrées sur la marque.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 stagger-children">
+        {portfolioWebsites.slice(0, 4).map(site => (
+          <a href={site.url} target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden rounded-2xl bg-brand-navy border border-white/5 hover:border-brand-purple/30 transition-all duration-500">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src={site.image} alt={site.name} class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+            </div>
+            <div class="p-5 flex items-center justify-between">
+              <div>
+                <h3 class="text-white font-bold group-hover:text-brand-cyan transition-colors">{site.name}</h3>
+                <span class="text-white/30 text-sm">{site.desc}</span>
+              </div>
+              <span class="text-white/20 text-sm font-mono">2025</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center mt-12 section-fade">
+        <a href="/portfolio" class="inline-flex items-center gap-2 text-white/50 hover:text-brand-cyan transition-colors text-sm group">
+          Voir tous les projets
+          <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ [03] SERVICES ══════ -->
+  <section class="py-28 lg:py-36 bg-brand-navy border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-fade mb-16">
+        <span class="text-white/20 text-sm font-mono tracking-wider">[03] Services</span>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mt-6">
+          <span class="gradient-text">Savoir-faire</span> & expertise
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-x-16 gap-y-20">
+        {services.map((service, i) => (
+          <a href={`/services#${service.id}`} class="group section-fade border-t border-white/5 pt-8 hover:border-brand-cyan/30 transition-colors duration-500" style={`transition-delay: ${i * 0.05}s`}>
+            <div class="flex items-start gap-6">
+              <span class="text-4xl sm:text-5xl font-bold text-white/10 group-hover:text-brand-cyan/20 transition-colors duration-500 leading-none font-mono">
+                {(i+1).toString().padStart(2, '0')}
+              </span>
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors duration-300 mb-3">{service.title}</h3>
+                <p class="text-white/40 leading-relaxed">{service.desc}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ [04] WHY CHOOSE US ══════ -->
+  <section class="py-28 lg:py-36 bg-brand-navy border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-fade mb-16">
+        <span class="text-white/20 text-sm font-mono tracking-wider">[04] Pourquoi nous</span>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mt-6">
+          Un travail créatif bâti avec <span class="gradient-text">intention</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 stagger-children">
+        <div class="glass rounded-2xl p-8">
+          <span class="text-5xl font-bold gradient-text font-mono">01</span>
+          <h3 class="text-xl font-bold text-white mt-4 mb-3">Équipe dédiée</h3>
+          <p class="text-white/40 text-sm leading-relaxed">Un chef de projet unique qui connaît votre dossier sur le bout des doigts, de A à Z.</p>
+        </div>
+        <div class="glass rounded-2xl p-8">
+          <span class="text-5xl font-bold gradient-text font-mono">02</span>
+          <h3 class="text-xl font-bold text-white mt-4 mb-3">Approche 360°</h3>
+          <p class="text-white/40 text-sm leading-relaxed">Tous vos besoins de communication réunis chez un seul et unique partenaire.</p>
+        </div>
+        <div class="glass rounded-2xl p-8">
+          <span class="text-5xl font-bold gradient-text font-mono">03</span>
+          <h3 class="text-xl font-bold text-white mt-4 mb-3">Résultats garantis</h3>
+          <p class="text-white/40 text-sm leading-relaxed">Des KPIs clairs, des livrables soignés et une optimisation continue de vos performances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ TESTIMONIALS ══════ -->
+  <section class="py-28 lg:py-36 bg-brand-navy border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-fade mb-16">
+        <span class="text-white/20 text-sm font-mono tracking-wider">[05] Témoignages</span>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mt-6">
+          Ce qu'ils <span class="gradient-text">disent</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 stagger-children">
+        {testimonials.map(t => (
+          <div class="border border-white/5 rounded-2xl p-8 hover:border-brand-purple/20 transition-colors duration-500">
+            <div class="text-yellow-400 text-sm tracking-wider mb-6">{'★'.repeat(t.rating)}{'☆'.repeat(5-t.rating)}</div>
+            <p class="text-white/60 text-base leading-relaxed italic mb-8">"{t.text}"</p>
+            <div class="flex items-center gap-3 border-t border-white/5 pt-6">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-purple to-brand-cyan flex items-center justify-center text-xs font-bold text-white">
+                {t.avatar}
+              </div>
+              <p class="text-white font-semibold text-sm">{t.name}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ [06] PRICING ══════ -->
+  <section class="py-28 lg:py-36 bg-brand-navy border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-fade mb-16">
+        <span class="text-white/20 text-sm font-mono tracking-wider">[06] Pricing</span>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mt-6">
+          Formules <span class="gradient-text">simples</span>
+        </h2>
+        <p class="text-white/40 mt-4 max-w-xl">Des solutions adaptées à tous les budgets, sans surprise.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 stagger-children">
+        <div class="pricing-card">
+          <h3 class="text-xl font-bold text-white mb-2">Basic</h3>
+          <p class="text-white/30 text-sm mb-6">Site vitrine</p>
+          <div class="mb-8">
+            <span class="text-5xl font-bold gradient-text">3 500</span>
+            <span class="text-white/30 text-lg"> DH</span>
+          </div>
+          <ul class="space-y-3 mb-10">
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Site 5 pages responsive</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Design personnalisé</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Formulaire de contact</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Hébergement 1 an</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> SEO de base</li>
+          </ul>
+          <a href="/contact" class="w-full text-center py-3 rounded-full border border-white/20 text-white hover:bg-white/5 transition-all duration-300 text-sm block">Choisir</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-purple to-brand-cyan text-xs font-bold text-white">POPULAIRE</div>
+          <h3 class="text-xl font-bold text-white mb-2">Pro</h3>
+          <p class="text-white/30 text-sm mb-6">Site sur mesure</p>
+          <div class="mb-8">
+            <span class="text-5xl font-bold gradient-text">7 500</span>
+            <span class="text-white/30 text-lg"> DH</span>
+          </div>
+          <ul class="space-y-3 mb-10">
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Site E-commerce ou vitrine</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Design UX/UI sur mesure</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> CMS (WordPress)</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> SEO avancé</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Formation équipe</li>
+          </ul>
+          <a href="/contact" class="w-full text-center py-3 rounded-full bg-gradient-to-r from-brand-purple to-brand-blue text-white hover:shadow-lg hover:shadow-brand-purple/30 transition-all duration-300 text-sm block">Choisir</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3 class="text-xl font-bold text-white mb-2">Enterprise</h3>
+          <p class="text-white/30 text-sm mb-6">Solution complète</p>
+          <div class="mb-8">
+            <span class="text-5xl font-bold gradient-text">15 000</span>
+            <span class="text-white/30 text-lg"> DH</span>
+          </div>
+          <ul class="space-y-3 mb-10">
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Plateforme sur mesure</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Branding complet</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Marketing digital</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Support prioritaire</li>
+            <li class="flex gap-3 text-white/50 text-sm"><span class="text-brand-cyan">→</span> Maintenance incluse</li>
+          </ul>
+          <a href="/contact" class="w-full text-center py-3 rounded-full border border-white/20 text-white hover:bg-white/5 transition-all duration-300 text-sm block">Choisir</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ FAQ ══════ -->
+  <section class="py-28 lg:py-36 bg-brand-navy border-t border-white/5">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-fade mb-16 text-center">
+        <span class="text-white/20 text-sm font-mono tracking-wider">[07] FAQ</span>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mt-6">
+          Questions <span class="gradient-text">fréquentes</span>
+        </h2>
+      </div>
+
+      <div class="space-y-4 section-fade">
+        <details class="border border-white/5 rounded-2xl p-6 group cursor-pointer hover:border-white/10 transition-colors">
+          <summary class="text-white font-semibold flex items-center justify-between list-none">
+            Combien de temps dure la création d'un site ?
+            <span class="text-white/20 group-open:rotate-180 transition-transform text-lg">↓</span>
+          </summary>
+          <p class="text-white/40 mt-4 text-sm leading-relaxed">En moyenne 2 à 4 semaines pour un site vitrine, 4 à 8 semaines pour un site plus complexe.</p>
+        </details>
+        <details class="border border-white/5 rounded-2xl p-6 group cursor-pointer hover:border-white/10 transition-colors">
+          <summary class="text-white font-semibold flex items-center justify-between list-none">
+            Proposez-vous l'hébergement ?
+            <span class="text-white/20 group-open:rotate-180 transition-transform text-lg">↓</span>
+          </summary>
+          <p class="text-white/40 mt-4 text-sm leading-relaxed">Oui, il est inclus dans nos formules pour la première année avec des serveurs sécurisés.</p>
+        </details>
+        <details class="border border-white/5 rounded-2xl p-6 group cursor-pointer hover:border-white/10 transition-colors">
+          <summary class="text-white font-semibold flex items-center justify-between list-none">
+            Puis-je modifier mon site moi-même ?
+            <span class="text-white/20 group-open:rotate-180 transition-transform text-lg">↓</span>
+          </summary>
+          <p class="text-white/40 mt-4 text-sm leading-relaxed">Absolument ! Nous utilisons des solutions flexibles et vous formons pour gérer votre contenu.</p>
+        </details>
+        <details class="border border-white/5 rounded-2xl p-6 group cursor-pointer hover:border-white/10 transition-colors">
+          <summary class="text-white font-semibold flex items-center justify-between list-none">
+            Proposez-vous un service après-vente ?
+            <span class="text-white/20 group-open:rotate-180 transition-transform text-lg">↓</span>
+          </summary>
+          <p class="text-white/40 mt-4 text-sm leading-relaxed">Oui, maintenance, mises à jour et support technique sont inclus selon la formule choisie.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ CTA ══════ -->
+  <section class="py-32 bg-brand-navy border-t border-white/5 relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-purple/8 blur-[150px]"></div>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="section-fade">
+        <h2 class="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-8">
+          Prêt à <span class="gradient-text">collaborer</span> ?
+        </h2>
+        <p class="text-white/40 text-lg mb-12 max-w-xl mx-auto">
+          Discutons de votre projet sans engagement.
+        </p>
+        <a href="/contact" class="btn-primary text-base !px-12 !py-5 text-lg">Nous contacter →</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // ═══ 3D HERO — THREE.JS ═══
+  import AtlasHero3D from '../components/ThreeBackground.js';
+
+  // ═══ TEXT REVEAL & 3D INIT ═══
+  document.addEventListener('DOMContentLoaded', () => {
+    // Init 3D scene
+    const container = document.getElementById('hero-3d-container');
+    if (container && typeof AtlasHero3D !== 'undefined') {
+      new AtlasHero3D(container);
+    }
+
+    // Hero text reveal
+    const reveals = document.querySelectorAll('.hero-reveal');
+    reveals.forEach((el, i) => {
+      setTimeout(() => {
+        el.classList.add('revealed');
+      }, i * 200);
+    });
+
+    // Hero fade elements
+    const fades = document.querySelectorAll('.hero-fade');
+    fades.forEach((el) => {
+      const delay = parseFloat(el.style.transitionDelay) || 0;
+      setTimeout(() => {
+        el.classList.add('visible');
+      }, delay * 1000);
+    });
+
+    // Parallax on mouse move
+    const hero = container?.parentElement;
+    if (hero) {
+      document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) * 2 - 1;
+        const y = -(e.clientY / window.innerHeight) * 2 + 1;
+        
+        const badges = hero.querySelectorAll('.animate-float-1, .animate-float-2, .animate-float-3');
+        badges.forEach((badge, i) => {
+          const factor = (i + 1) * 5;
+          badge.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+        });
+      });
+    }
+  });
+</script>
