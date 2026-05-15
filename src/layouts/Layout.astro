@@ -26,9 +26,6 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <SEO title={title} description={description} ogImage={ogImage} />
-    
-    <!-- Lenis Smooth Scroll CDN (is:inline prevents bundling) -->
-    <script is:inline src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   </head>
   <body class="font-inter bg-brand-navy text-white antialiased">
     <!-- Preloader -->
@@ -153,7 +150,6 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
         // Fallback: if Lenis fails to load within 3s, remove overflow hidden
         var fallbackTimer = setTimeout(function() {
           document.documentElement.classList.remove('lenis');
-          console.warn('Lenis timeout - native scroll restored');
         }, 3000);
         
         var LenisClass = window.Lenis;
@@ -172,20 +168,16 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
             
             window.__lenis = lenis;
             
+            // Lenis runs its OWN RAF loop - no Three.js interference
             function raf(time) {
               lenis.raf(time);
-              if (window.__threeRaf) {
-                window.__threeRaf(time);
-              }
               requestAnimationFrame(raf);
             }
             requestAnimationFrame(raf);
           } catch(e) {
-            console.warn('Lenis init error:', e);
             document.documentElement.classList.remove('lenis');
           }
         } else {
-          console.warn('Lenis not loaded - native scroll');
           document.documentElement.classList.remove('lenis');
         }
       })();
@@ -282,6 +274,31 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
           });
           observer.observe(el);
         });
+      });
+    </script>
+
+    <!-- Lenis Smooth Scroll (bundled from npm) -->
+    <script>
+      import Lenis from 'lenis';
+      document.addEventListener('DOMContentLoaded', () => {
+        try {
+          document.documentElement.classList.add('lenis');
+          const lenis = new Lenis({
+            duration: 0.4,
+            easing: (t) => 1 - Math.pow(1 - t, 3),
+            smoothWheel: true,
+            wheelMultiplier: 2,
+            touchMultiplier: 1.5,
+          });
+          window.__lenis = lenis;
+          function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+          requestAnimationFrame(raf);
+        } catch(e) {
+          document.documentElement.classList.remove('lenis');
+        }
       });
     </script>
   </body>

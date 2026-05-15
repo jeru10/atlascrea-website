@@ -172,21 +172,17 @@ export default class AtlasHero3D {
   }
   
   animate() {
-    // Throttle Three.js: skip every other frame to reduce lag
-    this._frameSkip = 0;
-    
-    // Use shared RAF via Lenis if available, otherwise fallback to own RAF
-    if (window.__lenis) {
-      // Register with shared RAF (time in ms, convert to seconds)
-      window.__threeRaf = (ms) => {
-        // Skip every other frame for performance
-        this._frameSkip = (this._frameSkip || 0) + 1;
-        if (this._frameSkip % 2 !== 0) return; // render every 2nd frame
-        this.tick(ms * 0.001);
-      };
-    } else {
-      requestAnimationFrame(() => this.animate());
-    }
+    // Run Three.js in its own loop, throttled to ~30fps for performance
+    var lastTime = 0;
+    var tick = function(now) {
+      // Throttle to ~30fps (every ~33ms)
+      if (now - lastTime >= 33) {
+        lastTime = now - (now - lastTime) % 33;
+        this.tick(Date.now() * 0.001);
+      }
+      requestAnimationFrame(tick.bind(this));
+    }.bind(this);
+    requestAnimationFrame(tick);
     this.tick(Date.now() * 0.001);
   }
   
