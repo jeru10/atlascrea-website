@@ -145,43 +145,6 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
         });
       })();
 
-      // ═══════════ LENIS SMOOTH SCROLL ═══════════
-      (function() {
-        // Fallback: if Lenis fails to load within 3s, remove overflow hidden
-        var fallbackTimer = setTimeout(function() {
-          document.documentElement.classList.remove('lenis');
-        }, 3000);
-        
-        var LenisClass = window.Lenis;
-        if (typeof LenisClass !== 'undefined' && LenisClass) {
-          clearTimeout(fallbackTimer);
-          try {
-            document.documentElement.classList.add('lenis');
-            
-            var lenis = new LenisClass({
-              duration: 0.4,
-              easing: function(t) { return 1 - Math.pow(1 - t, 3); },
-              smoothWheel: true,
-              wheelMultiplier: 2,
-              touchMultiplier: 1.5,
-            });
-            
-            window.__lenis = lenis;
-            
-            // Lenis runs its OWN RAF loop - no Three.js interference
-            function raf(time) {
-              lenis.raf(time);
-              requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-          } catch(e) {
-            document.documentElement.classList.remove('lenis');
-          }
-        } else {
-          document.documentElement.classList.remove('lenis');
-        }
-      })();
-
       // ═══════════ MAGNETIC BUTTONS ═══════════
       (function() {
         document.querySelectorAll('.magnetic-btn').forEach(btn => {
@@ -277,7 +240,7 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
       });
     </script>
 
-    <!-- Lenis Smooth Scroll (bundled from npm) -->
+    <!-- Lenis Smooth Scroll + Three.js scroll pause (bundled from npm) -->
     <script>
       import Lenis from 'lenis';
       document.addEventListener('DOMContentLoaded', () => {
@@ -291,6 +254,18 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
             touchMultiplier: 1.5,
           });
           window.__lenis = lenis;
+
+          // ═══ Pause Three.js while scrolling ═══
+          let scrollTimer = null;
+          lenis.on('scroll', () => {
+            window.__lenisScrolling = true;
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+              window.__lenisScrolling = false;
+            }, 100); // 100ms after scroll stops
+          });
+
+          // Lenis own RAF
           function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);

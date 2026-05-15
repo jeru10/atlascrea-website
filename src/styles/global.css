@@ -500,7 +500,7 @@ header.scrolled {
 .section-fade {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s var(--ease-out-expo);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
 }
 .section-fade.visible {
   opacity: 1;

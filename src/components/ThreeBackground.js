@@ -172,18 +172,23 @@ export default class AtlasHero3D {
   }
   
   animate() {
-    // Run Three.js in its own loop, throttled to ~30fps for performance
+    // Run Three.js in its own loop, throttled to ~30fps
+    // Pause entirely while user is scrolling (frees GPU for smooth scroll)
     var lastTime = 0;
     var tick = function(now) {
-      // Throttle to ~30fps (every ~33ms)
       if (now - lastTime >= 33) {
         lastTime = now - (now - lastTime) % 33;
-        this.tick(Date.now() * 0.001);
+        // Skip render if user is actively scrolling
+        if (!window.__lenisScrolling) {
+          this.tick(Date.now() * 0.001);
+        }
       }
       requestAnimationFrame(tick.bind(this));
     }.bind(this);
     requestAnimationFrame(tick);
-    this.tick(Date.now() * 0.001);
+    if (!window.__lenisScrolling) {
+      this.tick(Date.now() * 0.001);
+    }
   }
   
   tick(time) {
