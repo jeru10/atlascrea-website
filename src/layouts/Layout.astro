@@ -26,6 +26,9 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <SEO title={title} description={description} ogImage={ogImage} />
+    
+    <!-- Lenis Smooth Scroll CDN (is:inline prevents bundling) -->
+    <script is:inline src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   </head>
   <body class="font-inter bg-brand-navy text-white antialiased">
     <!-- Preloader -->
@@ -58,10 +61,7 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
     <Footer />
     <WhatsAppBtn />
 
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-
-    <script>
+    <script is:inline>
       // ═══════════ PRELOADER ═══════════
       (function() {
         const preloader = document.getElementById('preloader');
@@ -94,8 +94,8 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
               preloader.classList.add('preloader-slide-up');
               setTimeout(() => {
                 preloader.style.display = 'none';
-                // Enable cursor after preloader
-                document.body.style.cursor = 'none';
+                // Enable custom cursor after preloader
+                document.body.classList.add('cursor-loaded');
               }, 800);
             }, 400);
           }
@@ -159,17 +159,20 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
       // ═══════════ LENIS SMOOTH SCROLL ═══════════
       (function() {
-        if (typeof Lenis !== 'undefined') {
-          const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-          });
-          function raf(time) {
-            lenis.raf(time);
+        var LenisClass = window.Lenis;
+        if (typeof LenisClass !== 'undefined' && LenisClass) {
+          try {
+            var lenis = new LenisClass({
+              duration: 1.2,
+              easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+              smoothWheel: true,
+            });
+            function raf(time) {
+              lenis.raf(time);
+              requestAnimationFrame(raf);
+            }
             requestAnimationFrame(raf);
-          }
-          requestAnimationFrame(raf);
+          } catch(e) {}
         }
       })();
 

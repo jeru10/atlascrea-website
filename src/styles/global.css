@@ -45,6 +45,15 @@ body {
   background: #020E26;
   color: white;
   overflow-x: hidden;
+}
+
+/* Custom cursor enabled only after JS loads and preloader finishes */
+body.cursor-loaded {
+  cursor: none;
+}
+body.cursor-loaded a,
+body.cursor-loaded button,
+body.cursor-loaded .magnetic-btn {
   cursor: none;
 }
 
