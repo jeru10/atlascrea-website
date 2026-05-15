@@ -8,10 +8,11 @@
 @theme {
   /* Brand Colors */
   --color-brand-navy: #020E26;
-  --color-brand-orange: #ffffff;
-  --color-brand-purple: #ffffff;
-  --color-brand-cyan: #ffffff;
-  --color-brand-blue: #138CFF;
+  --color-brand-blue: #3691e3;
+  --color-brand-gradient-from: #3691e3;
+  --color-brand-gradient-to: #2da8e2;
+  --color-brand-purple: #3691e3;
+  --color-brand-cyan: #2da8e2;
   --color-brand-white: #ffffff;
   
   /* Surface */
@@ -28,7 +29,7 @@
   --color-text-tertiary: rgba(255, 255, 255, 0.35);
   --color-text-inverse: rgba(255, 255, 255, 0.08);
   --color-text-subtle: rgba(255, 255, 255, 0.35);
-  --color-text-accent: #ffffff;
+  --color-text-accent: #3691e3;
   
   /* Fonts */
   --font-kanit: 'Figtree', sans-serif;
@@ -182,7 +183,7 @@ body.cursor-loaded .magnetic-btn {
 .preloader-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #020E26, #138CFF);
+  background: linear-gradient(90deg, #3691e3, #2da8e2);
   border-radius: 2px;
   transition: width 0.05s linear;
 }
@@ -226,7 +227,7 @@ body.cursor-loaded .magnetic-btn {
 
 /* ═══════════ GRADIENT TEXT ═══════════ */
 .gradient-text {
-  background: linear-gradient(135deg, #020E26, #138CFF);
+  background: linear-gradient(135deg, #3691e3, #2da8e2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -310,7 +311,7 @@ header.scrolled {
   align-items: center;
   gap: 8px;
   padding: 16px 40px;
-  background: linear-gradient(135deg, #020E26, #138CFF);
+  background: linear-gradient(135deg, #3691e3, #2da8e2);
   color: white;
   font-size: 14px;
   font-weight: 600;
