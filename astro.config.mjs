@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://www.atlascrea.com',
+  base: '/',
   vite: {
     plugins: [tailwindcss()]
   }
