@@ -104,34 +104,25 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
       // ═══════════ CUSTOM CURSOR ═══════════
       (function() {
-        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         if (isTouch) return;
 
-        const dot = document.getElementById('cursor-dot');
-        const ring = document.getElementById('cursor-ring');
-        let mouseX = -100, mouseY = -100;
-        let ringX = -100, ringY = -100;
+        var dot = document.getElementById('cursor-dot');
+        var ring = document.getElementById('cursor-ring');
 
-        document.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
+        document.addEventListener('mousemove', function(e) {
+          var x = e.clientX;
+          var y = e.clientY;
           if (dot) {
-            dot.style.left = mouseX - 4 + 'px';
-            dot.style.top = mouseY - 4 + 'px';
+            dot.style.left = x - 4 + 'px';
+            dot.style.top = y - 4 + 'px';
+          }
+          if (ring) {
+            // Use CSS transition on #cursor-ring for smooth follow
+            ring.style.left = x - 20 + 'px';
+            ring.style.top = y - 20 + 'px';
           }
         });
-
-        // Smooth ring follower
-        function updateRing() {
-          ringX += (mouseX - ringX) * 0.15;
-          ringY += (mouseY - ringY) * 0.15;
-          if (ring) {
-            ring.style.left = ringX - 20 + 'px';
-            ring.style.top = ringY - 20 + 'px';
-          }
-          requestAnimationFrame(updateRing);
-        }
-        updateRing();
 
         // Hover effect on interactive elements
         document.addEventListener('mouseover', (e) => {
@@ -166,18 +157,22 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
             document.documentElement.classList.add('lenis');
             
             var lenis = new LenisClass({
-              duration: 1.2,
+              duration: 0.7,
               easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
               smoothWheel: true,
-              wheelMultiplier: 1,
-              touchMultiplier: 1.5,
+              wheelMultiplier: 0.8,
+              touchMultiplier: 1.2,
             });
             
-            // Store on window for debug
+            // Store on window so Three.js cursor etc can hook into same RAF
             window.__lenis = lenis;
             
             function raf(time) {
               lenis.raf(time);
+              // Signal Three.js that RAF frame is available (throttled)
+              if (window.__threeRaf) {
+                window.__threeRaf(time);
+              }
               requestAnimationFrame(raf);
             }
             requestAnimationFrame(raf);

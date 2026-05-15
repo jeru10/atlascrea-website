@@ -172,9 +172,18 @@ export default class AtlasHero3D {
   }
   
   animate() {
-    requestAnimationFrame(() => this.animate());
-    
-    const time = Date.now() * 0.001;
+    // Use shared RAF via Lenis if available, otherwise fallback to own RAF
+    if (window.__lenis) {
+      // Register with shared RAF (time in ms, convert to seconds)
+      window.__threeRaf = (ms) => this.tick(ms * 0.001);
+    } else {
+      requestAnimationFrame(() => this.animate());
+    }
+    this.tick(Date.now() * 0.001);
+  }
+  
+  tick(time) {
+    // time in seconds
     
     // Animate shapes
     this.shapes.forEach((shape, i) => {
