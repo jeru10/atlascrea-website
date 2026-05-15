@@ -8,11 +8,11 @@
 @theme {
   /* Brand Colors */
   --color-brand-navy: #020E26;
-  --color-brand-blue: #3691e3;
-  --color-brand-gradient-from: #3691e3;
-  --color-brand-gradient-to: #2da8e2;
-  --color-brand-purple: #3691e3;
-  --color-brand-cyan: #2da8e2;
+  --color-brand-blue: #3654E3;
+  --color-brand-gradient-from: #1A1675;
+  --color-brand-gradient-to: #22D3C5;
+  --color-brand-purple: #2B1B9C;
+  --color-brand-cyan: #22D3C5;
   --color-brand-white: #ffffff;
   
   /* Surface */
@@ -29,7 +29,7 @@
   --color-text-tertiary: rgba(255, 255, 255, 0.35);
   --color-text-inverse: rgba(255, 255, 255, 0.08);
   --color-text-subtle: rgba(255, 255, 255, 0.35);
-  --color-text-accent: #3691e3;
+  --color-text-accent: #2DA8E2;
   
   /* Fonts */
   --font-kanit: 'Figtree', sans-serif;
@@ -108,19 +108,19 @@ body.cursor-loaded .magnetic-btn {
 .cursor-hover .cursor-dot {
   width: 12px;
   height: 12px;
-  background: #138CFF;
+  background: #2DA8E2;
 }
 .cursor-hover .cursor-ring {
   width: 60px;
   height: 60px;
-  border-color: #138CFF;
-  background: rgba(21, 207, 204, 0.05);
+  border-color: #2DA8E2;
+  background: rgba(34, 211, 197, 0.05);
 }
 .cursor-view .cursor-ring {
   width: 80px;
   height: 80px;
-  border-color: #138CFF;
-  background: rgba(85, 50, 228, 0.08);
+  border-color: #2DA8E2;
+  background: rgba(54, 84, 227, 0.08);
 }
 .cursor-view .cursor-ring::after {
   content: 'VIEW';
@@ -131,7 +131,7 @@ body.cursor-loaded .magnetic-btn {
   font-size: 9px;
   font-family: 'Kanit', sans-serif;
   letter-spacing: 0.15em;
-  color: #138CFF;
+  color: #2DA8E2;
 }
 @media (hover: none) and (pointer: coarse) {
   body { cursor: auto; }
@@ -164,7 +164,7 @@ body.cursor-loaded .magnetic-btn {
 .preloader-dot {
   width: 8px;
   height: 8px;
-  background: #138CFF;
+  background: #2DA8E2;
   border-radius: 50%;
   animation: preloader-pulse 1s ease-in-out infinite;
 }
@@ -183,7 +183,7 @@ body.cursor-loaded .magnetic-btn {
 .preloader-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #3691e3, #2da8e2);
+  background: linear-gradient(90deg, #1A1675 0%, #3654E3 45%, #2DA8E2 72%, #22D3C5 100%);
   border-radius: 2px;
   transition: width 0.05s linear;
 }
@@ -227,15 +227,15 @@ body.cursor-loaded .magnetic-btn {
 
 /* ═══════════ GRADIENT TEXT ═══════════ */
 .gradient-text {
-  background: linear-gradient(135deg, #3691e3, #2da8e2);
+  background: linear-gradient(135deg, #020E26 0%, #1A1675 20%, #3654E3 48%, #2DA8E2 74%, #22D3C5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 /* ═══════════ GLOW EFFECTS ═══════════ */
-.glow-cyan { box-shadow: 0 0 30px rgba(21, 207, 204, 0.15); }
-.glow-purple { box-shadow: 0 0 30px rgba(85, 50, 228, 0.2); }
+.glow-cyan { box-shadow: 0 0 30px rgba(34, 211, 197, 0.15); }
+.glow-purple { box-shadow: 0 0 30px rgba(54, 84, 227, 0.2); }
 
 /* ═══════════ MAGNETIC BUTTON ═══════════ */
 .magnetic-btn {
@@ -262,7 +262,7 @@ body.cursor-loaded .magnetic-btn {
   left: 0;
   width: 0;
   height: 1px;
-  background: #138CFF;
+  background: #2DA8E2;
   transition: width var(--duration-normal) var(--ease-smooth);
 }
 .nav-link:hover::after { width: 100%; }
@@ -287,13 +287,13 @@ header.scrolled {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #138CFF;
+  color: #2DA8E2;
 }
 .section-label::before {
   content: '';
   width: 32px;
   height: 1px;
-  background: #138CFF;
+  background: #2DA8E2;
   flex-shrink: 0;
 }
 .section-title {
@@ -311,7 +311,7 @@ header.scrolled {
   align-items: center;
   gap: 8px;
   padding: 16px 40px;
-  background: linear-gradient(135deg, #3691e3, #2da8e2);
+  background: linear-gradient(135deg, #020E26 0%, #1A1675 20%, #3654E3 48%, #2DA8E2 74%, #22D3C5 100%);
   color: white;
   font-size: 14px;
   font-weight: 600;
@@ -320,12 +320,12 @@ header.scrolled {
   border: none;
   cursor: pointer;
   transition: all var(--duration-normal) var(--ease-smooth);
-  box-shadow: 0 8px 25px rgba(85, 50, 228, 0.35);
+  box-shadow: 0 8px 25px rgba(54, 84, 227, 0.35);
   text-decoration: none;
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 35px rgba(85, 50, 228, 0.5);
+  box-shadow: 0 12px 35px rgba(54, 84, 227, 0.5);
 }
 .btn-outline {
   display: inline-flex;
@@ -343,8 +343,8 @@ header.scrolled {
   text-decoration: none;
 }
 .btn-outline:hover {
-  border-color: #138CFF;
-  background: rgba(21, 207, 204, 0.1);
+  border-color: #2DA8E2;
+  background: rgba(34, 211, 197, 0.1);
   transform: translateY(-2px);
 }
 
@@ -356,8 +356,8 @@ header.scrolled {
   transition: all var(--duration-normal) var(--ease-smooth);
 }
 .service-card:hover {
-  background: rgba(21, 207, 204, 0.04);
-  border-color: rgba(21, 207, 204, 0.2);
+  background: rgba(34, 211, 197, 0.04);
+  border-color: rgba(34, 211, 197, 0.2);
 }
 
 /* ═══════════ SERVICE CATEGORY ROW ═══════════ */
@@ -367,10 +367,10 @@ header.scrolled {
   cursor: default;
 }
 .service-category-row:hover {
-  border-color: rgba(21, 207, 204, 0.15) !important;
+  border-color: rgba(34, 211, 197, 0.15) !important;
 }
 .service-category-row:hover h3 {
-  color: rgba(21, 207, 204, 0.8);
+  color: rgba(34, 211, 197, 0.8);
   transition: color var(--duration-normal) var(--ease-smooth);
 }
 
@@ -384,9 +384,9 @@ header.scrolled {
   transition: all var(--duration-normal) var(--ease-smooth);
 }
 .work-card:hover {
-  border-color: rgba(21, 207, 204, 0.2);
+  border-color: rgba(34, 211, 197, 0.2);
   transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(85, 50, 228, 0.15);
+  box-shadow: 0 20px 50px rgba(54, 84, 227, 0.15);
 }
 
 /* ═══════════ CARDS (3D hover) ═══════════ */
@@ -403,9 +403,9 @@ header.scrolled {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
   transition: all var(--duration-normal) var(--ease-smooth);
-  background-image: radial-gradient(ellipse at 20% 50%, rgba(85, 50, 228, 0.06) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(54, 84, 227, 0.06) 0%, transparent 60%);
 }
-.process-card:hover { border-color: rgba(21, 207, 204, 0.25); }
+.process-card:hover { border-color: rgba(34, 211, 197, 0.25); }
 .process-card:hover .process-accent-line { transform: scaleX(1); }
 .process-accent-line {
   position: absolute;
@@ -413,7 +413,7 @@ header.scrolled {
   left: 0;
   right: 0;
   height: 2px;
-  background: #138CFF;
+  background: #2DA8E2;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--ease-smooth);
@@ -429,11 +429,11 @@ header.scrolled {
 }
 .pricing-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(85, 50, 228, 0.2);
+  box-shadow: 0 20px 50px rgba(54, 84, 227, 0.2);
 }
 .pricing-card.featured {
-  background: linear-gradient(135deg, rgba(19, 140, 255, 0.12), rgba(19, 140, 255, 0.06));
-  border-color: rgba(85, 50, 228, 0.3);
+  background: linear-gradient(135deg, rgba(26, 22, 117, 0.28), rgba(54, 84, 227, 0.16), rgba(34, 211, 197, 0.08));
+  border-color: rgba(45, 168, 226, 0.28);
 }
 
 /* ═══════════ TESTIMONIAL ═══════════ */
@@ -446,7 +446,7 @@ header.scrolled {
 }
 .testimonial-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(21, 207, 204, 0.15);
+  border-color: rgba(34, 211, 197, 0.15);
 }
 
 /* ═══════════ FORM INPUTS ═══════════ */
@@ -462,8 +462,8 @@ header.scrolled {
   transition: all var(--duration-normal) var(--ease-smooth);
 }
 .input-field:focus {
-  border-color: #138CFF;
-  box-shadow: 0 0 20px rgba(85, 50, 228, 0.15);
+  border-color: #2DA8E2;
+  box-shadow: 0 0 20px rgba(54, 84, 227, 0.15);
 }
 .input-field::placeholder { color: rgba(255, 255, 255, 0.3); }
 
@@ -534,7 +534,7 @@ header.scrolled {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(85, 50, 228, 0.12) 0%, rgba(21, 207, 204, 0.06) 30%, transparent 70%);
+  background: radial-gradient(circle, rgba(54, 84, 227, 0.12) 0%, rgba(34, 211, 197, 0.06) 30%, transparent 70%);
   filter: blur(60px);
   pointer-events: none;
   will-change: transform;
@@ -576,7 +576,7 @@ header.scrolled {
 
 /* ═══════════ MISC ═══════════ */
 ::selection {
-  background: #138CFF;
+  background: #2DA8E2;
   color: white;
 }
 html { scroll-behavior: smooth; }
@@ -584,3 +584,5 @@ html { scroll-behavior: smooth; }
 ::-webkit-scrollbar-track { background: #020E26; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+
