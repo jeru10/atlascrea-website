@@ -194,36 +194,8 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
         });
       })();
 
-      // ═══════════ INTERSECTION OBSERVER ═══════════
+      // ═══════════ HERO REVEAL (kept for compatibility) ═══════════
       document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.section-fade').forEach(el => observer.observe(el));
-      
-        // Stagger children
-        document.querySelectorAll('.stagger-children').forEach(parent => {
-          const children = parent.children;
-          const staggerObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                Array.from(children).forEach((child, i) => {
-                  child.style.transitionDelay = `${i * 0.1}s`;
-                  child.classList.add('visible');
-                });
-                staggerObserver.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.1 });
-          staggerObserver.observe(parent);
-        });
-        
-        // Hero reveal
         document.querySelectorAll('.hero-reveal').forEach((el, i) => {
           const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -275,6 +247,11 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
           document.documentElement.classList.remove('lenis');
         }
       });
+    </script>
+
+    <!-- GSAP + ScrollTrigger Pro Animations (bundled from npm) -->
+    <script>
+      import '../scripts/gsap-animations.js';
     </script>
   </body>
 </html>
