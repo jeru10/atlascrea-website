@@ -107,18 +107,18 @@ body.cursor-loaded .magnetic-btn {
 .cursor-hover .cursor-dot {
   width: 12px;
   height: 12px;
-  background: #15CFCC;
+  background: #138CFF;
 }
 .cursor-hover .cursor-ring {
   width: 60px;
   height: 60px;
-  border-color: #15CFCC;
+  border-color: #138CFF;
   background: rgba(21, 207, 204, 0.05);
 }
 .cursor-view .cursor-ring {
   width: 80px;
   height: 80px;
-  border-color: #5532E4;
+  border-color: #138CFF;
   background: rgba(85, 50, 228, 0.08);
 }
 .cursor-view .cursor-ring::after {
@@ -130,7 +130,7 @@ body.cursor-loaded .magnetic-btn {
   font-size: 9px;
   font-family: 'Kanit', sans-serif;
   letter-spacing: 0.15em;
-  color: #15CFCC;
+  color: #138CFF;
 }
 @media (hover: none) and (pointer: coarse) {
   body { cursor: auto; }
@@ -163,7 +163,7 @@ body.cursor-loaded .magnetic-btn {
 .preloader-dot {
   width: 8px;
   height: 8px;
-  background: #15CFCC;
+  background: #138CFF;
   border-radius: 50%;
   animation: preloader-pulse 1s ease-in-out infinite;
 }
@@ -182,7 +182,7 @@ body.cursor-loaded .magnetic-btn {
 .preloader-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #5532E4, #15CFCC, #138CFF);
+  background: linear-gradient(90deg, #020E26, #138CFF);
   border-radius: 2px;
   transition: width 0.05s linear;
 }
@@ -226,7 +226,7 @@ body.cursor-loaded .magnetic-btn {
 
 /* ═══════════ GRADIENT TEXT ═══════════ */
 .gradient-text {
-  background: linear-gradient(135deg, #5532E4, #15CFCC, #138CFF);
+  background: linear-gradient(135deg, #020E26, #138CFF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -261,7 +261,7 @@ body.cursor-loaded .magnetic-btn {
   left: 0;
   width: 0;
   height: 1px;
-  background: #15CFCC;
+  background: #138CFF;
   transition: width var(--duration-normal) var(--ease-smooth);
 }
 .nav-link:hover::after { width: 100%; }
@@ -286,13 +286,13 @@ header.scrolled {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #15CFCC;
+  color: #138CFF;
 }
 .section-label::before {
   content: '';
   width: 32px;
   height: 1px;
-  background: #15CFCC;
+  background: #138CFF;
   flex-shrink: 0;
 }
 .section-title {
@@ -310,7 +310,7 @@ header.scrolled {
   align-items: center;
   gap: 8px;
   padding: 16px 40px;
-  background: linear-gradient(135deg, #5532E4, #138CFF);
+  background: linear-gradient(135deg, #020E26, #138CFF);
   color: white;
   font-size: 14px;
   font-weight: 600;
@@ -342,7 +342,7 @@ header.scrolled {
   text-decoration: none;
 }
 .btn-outline:hover {
-  border-color: #15CFCC;
+  border-color: #138CFF;
   background: rgba(21, 207, 204, 0.1);
   transform: translateY(-2px);
 }
@@ -412,7 +412,7 @@ header.scrolled {
   left: 0;
   right: 0;
   height: 2px;
-  background: #15CFCC;
+  background: #138CFF;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s var(--ease-smooth);
@@ -431,7 +431,7 @@ header.scrolled {
   box-shadow: 0 20px 50px rgba(85, 50, 228, 0.2);
 }
 .pricing-card.featured {
-  background: linear-gradient(135deg, rgba(85, 50, 228, 0.12), rgba(21, 207, 204, 0.06));
+  background: linear-gradient(135deg, rgba(19, 140, 255, 0.12), rgba(19, 140, 255, 0.06));
   border-color: rgba(85, 50, 228, 0.3);
 }
 
@@ -461,7 +461,7 @@ header.scrolled {
   transition: all var(--duration-normal) var(--ease-smooth);
 }
 .input-field:focus {
-  border-color: #5532E4;
+  border-color: #138CFF;
   box-shadow: 0 0 20px rgba(85, 50, 228, 0.15);
 }
 .input-field::placeholder { color: rgba(255, 255, 255, 0.3); }
@@ -575,7 +575,7 @@ header.scrolled {
 
 /* ═══════════ MISC ═══════════ */
 ::selection {
-  background: #5532E4;
+  background: #138CFF;
   color: white;
 }
 html { scroll-behavior: smooth; }
