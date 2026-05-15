@@ -1,8 +1,10 @@
 ---
 const { title, description, ogImage } = Astro.props;
-const siteUrl = 'https://www.atlascrea.com';
+const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+const siteUrl = 'https://atlascrea.ma';
 const defaultTitle = 'ATLAS CREA | Agence de Communication 360° à Marrakech';
 const defaultDesc = 'ATLAS CREA est une agence de communication 360° à Marrakech. Branding, sites web, social media, SEO, print et publicité digitale. Solutions sur-mesure à prix startup.';
+const finalOgImage = ogImage || `${base}images/og-image.svg`;
 ---
 
 <!-- Primary Meta Tags -->
@@ -19,7 +21,7 @@ const defaultDesc = 'ATLAS CREA est une agence de communication 360° à Marrake
 <meta property="og:url" content={siteUrl} />
 <meta property="og:title" content={title || defaultTitle} />
 <meta property="og:description" content={description || defaultDesc} />
-<meta property="og:image" content={ogImage || `${siteUrl}/images/og-image.jpg`} />
+<meta property="og:image" content={finalOgImage} />
 <meta property="og:site_name" content="ATLAS CREA" />
 <meta property="og:locale" content="fr_FR" />
 
@@ -28,7 +30,7 @@ const defaultDesc = 'ATLAS CREA est une agence de communication 360° à Marrake
 <meta property="twitter:url" content={siteUrl} />
 <meta property="twitter:title" content={title || defaultTitle} />
 <meta property="twitter:description" content={description || defaultDesc} />
-<meta property="twitter:image" content={ogImage || `${siteUrl}/images/og-image.jpg`} />
+<meta property="twitter:image" content={finalOgImage} />
 
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json" set:html={{
@@ -36,7 +38,7 @@ const defaultDesc = 'ATLAS CREA est une agence de communication 360° à Marrake
   "@type": "Organization",
   "name": "ATLAS CREA",
   "url": siteUrl,
-  "logo": `${siteUrl}/favicon.svg`,
+  "logo": `${base}images/logo.png`,
   "description": defaultDesc,
   "address": {
     "@type": "PostalAddress",

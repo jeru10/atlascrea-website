@@ -94,12 +94,12 @@ export const skillsData = [
 ];
 
 export const portfolioWebsites = [
-  { name: "Munich Recruitment", url: "https://www.munichrecruitment.com", desc: "Agence de recrutement", category: "Web", image: "/images/portfolio/munich-recruitment.jpg" },
-  { name: "Abdol Luxury Tour", url: "https://abdoluxurytour.com", desc: "Tourisme de luxe", category: "Web", image: "/images/portfolio/abdoluxurytour.jpg" },
-  { name: "Mondrap", url: "https://mondrap.com", desc: "Mode & Vêtements", category: "Web", image: "/images/portfolio/mondrap.jpg" },
-  { name: "Potentiel Consulting", url: "https://www.potentielconsulting.ma", desc: "Conseil & Consulting", category: "Web", image: "/images/portfolio/potentiel-consulting.jpg" },
-  { name: "Atlas Epic Trek", url: "https://atlasepictrek.com", desc: "Trekking & Aventure", category: "Web", image: "/images/portfolio/atlasepictrek.jpg" },
-  { name: "Charpente Maroc", url: "https://charpente-maroc.com", desc: "Construction Bois", category: "Web", image: "/images/portfolio/charpente-maroc.jpg" }
+  { name: "Munich Recruitment", url: "https://www.munichrecruitment.com", desc: "Agence de recrutement", category: "Web", image: "images/portfolio/munich-recruitment.jpg" },
+  { name: "Abdol Luxury Tour", url: "https://abdoluxurytour.com", desc: "Tourisme de luxe", category: "Web", image: "images/portfolio/abdoluxurytour.jpg" },
+  { name: "Mondrap", url: "https://mondrap.com", desc: "Mode & Vêtements", category: "Web", image: "images/portfolio/mondrap.jpg" },
+  { name: "Potentiel Consulting", url: "https://www.potentielconsulting.ma", desc: "Conseil & Consulting", category: "Web", image: "images/portfolio/potentiel-consulting.jpg" },
+  { name: "Atlas Epic Trek", url: "https://atlasepictrek.com", desc: "Trekking & Aventure", category: "Web", image: "images/portfolio/atlasepictrek.jpg" },
+  { name: "Charpente Maroc", url: "https://charpente-maroc.com", desc: "Construction Bois", category: "Web", image: "images/portfolio/charpente-maroc.jpg" }
 ];
 
 export const pricingPlans = [

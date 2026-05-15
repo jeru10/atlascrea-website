@@ -11,6 +11,7 @@ export interface Props {
   ogImage?: string;
 }
 const { title, description, ogImage } = Astro.props;
+const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 ---
 
 <!DOCTYPE html>
@@ -18,8 +19,9 @@ const { title, description, ogImage } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/images/logo.png" />
-    <link rel="apple-touch-icon" href="/images/logo.png" />
+    <base href={base}>
+    <link rel="icon" type="image/png" href={base + "images/logo.png"} />
+    <link rel="apple-touch-icon" href={base + "images/logo.png"} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
