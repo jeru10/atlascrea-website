@@ -162,17 +162,31 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
         var LenisClass = window.Lenis;
         if (typeof LenisClass !== 'undefined' && LenisClass) {
           try {
+            // Enable Lenis mode: overflow hidden on html/body
+            document.documentElement.classList.add('lenis');
+            
             var lenis = new LenisClass({
               duration: 1.2,
               easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
               smoothWheel: true,
+              wheelMultiplier: 1,
+              touchMultiplier: 1.5,
             });
+            
+            // Store on window for debug
+            window.__lenis = lenis;
+            
             function raf(time) {
               lenis.raf(time);
               requestAnimationFrame(raf);
             }
             requestAnimationFrame(raf);
-          } catch(e) {}
+          } catch(e) {
+            console.warn('Lenis init error:', e);
+            document.documentElement.classList.remove('lenis');
+          }
+        } else {
+          console.warn('Lenis not loaded');
         }
       })();
 

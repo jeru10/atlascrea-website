@@ -44,7 +44,14 @@ body {
   font-family: 'Inter', sans-serif;
   background: #020E26;
   color: white;
-  overflow-x: hidden;
+}
+
+/* Lenis: overflow hidden when active */
+html.lenis {
+  overflow: hidden;
+}
+html.lenis body {
+  overflow: hidden;
 }
 
 /* Custom cursor enabled only after JS loads and preloader finishes */
