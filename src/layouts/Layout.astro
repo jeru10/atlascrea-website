@@ -163,8 +163,8 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
             document.documentElement.classList.add('lenis');
             
             var lenis = new LenisClass({
-              duration: 0.3,
-              easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+              duration: 0.4,
+              easing: function(t) { return 1 - Math.pow(1 - t, 3); },
               smoothWheel: true,
               wheelMultiplier: 2,
               touchMultiplier: 1.5,
