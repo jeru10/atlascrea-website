@@ -1,77 +1,157 @@
 ---
-import { services } from '../data/siteData';
-// Ensure base ends with '/' so concatenation works
 const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+const navLinks = [
+  { name: 'Accueil', href: base, number: '01' },
+  { name: 'Services', href: base + 'services', number: '02' },
+  { name: 'À Propos', href: base + 'about', number: '03' },
+  { name: 'Réalisations', href: base + 'portfolio', number: '04' },
+  { name: 'Pricing', href: base + 'pricing', number: '05' },
+];
 ---
 
-<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
+<header id="header" class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
+  <div id="nav-container" class="mx-auto transition-all duration-700 max-w-full bg-transparent" data-scrolled-class="mt-4 max-w-5xl rounded-2xl !bg-brand-navy/80 backdrop-blur-2xl border border-white/10 shadow-2xl">
+    <nav class="flex items-center justify-between py-6 md:py-6 px-0 md:px-6 transition-all duration-500" data-scrolled-class="py-3">
       <!-- Logo -->
-      <a href={base} class="flex items-center gap-3 group">
+      <a href={base} class="flex items-center gap-2 group">
         <img src={base + "images/logo.png"} alt="ATLAS CREA" class="h-10 w-auto" />
       </a>
 
       <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center gap-8">
-        <a href={base} class="text-white/80 hover:text-brand-cyan transition-colors duration-300 text-sm font-medium">Accueil</a>
-        <a href={base + "services"} class="text-white/80 hover:text-brand-cyan transition-colors duration-300 text-sm font-medium">Services</a>
-        <a href={base + "about"} class="text-white/80 hover:text-brand-cyan transition-colors duration-300 text-sm font-medium">À Propos</a>
-        <a href={base + "portfolio"} class="text-white/80 hover:text-brand-cyan transition-colors duration-300 text-sm font-medium">Réalisations</a>
-        <a href={base + "contact"} class="text-white/80 hover:text-brand-cyan transition-colors duration-300 text-sm font-medium">Contact</a>
-        <a href={base + "pricing"} class="text-white/80 hover:text-brand-cyan transition-colors duration-300 text-sm font-medium">Pricing</a>
-        <a href={base + "contact"} class="btn-primary text-sm !px-6 !py-2.5">Demander un devis</a>
+      <div class="hidden md:flex items-center gap-1">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="px-4 py-2 text-xs font-medium tracking-[0.15em] uppercase text-white/60 hover:text-white transition-colors duration-300 relative nav-link"
+          >
+            {link.name}
+          </a>
+        ))}
       </div>
 
-      <!-- Mobile hamburger -->
-      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2 group" aria-label="Menu">
-        <span class="block w-6 h-0.5 bg-white transition-all duration-300 group-[.open]:rotate-45 group-[.open]:translate-y-2"></span>
-        <span class="block w-6 h-0.5 bg-white transition-all duration-300 group-[.open]:opacity-0"></span>
-        <span class="block w-6 h-0.5 bg-white transition-all duration-300 group-[.open]:-rotate-45 group-[.open]:-translate-y-2"></span>
-      </button>
-    </div>
-  </nav>
+      <!-- CTA + Hamburger -->
+      <div class="flex items-center gap-4">
+        <a href={base + "contact"} class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-gradient-to-r from-brand-purple to-brand-blue text-white rounded-full hover:shadow-lg hover:shadow-brand-purple/30 transition-all duration-300">
+          Contact →
+        </a>
+        <!-- Mobile Hamburger -->
+        <button id="menu-toggle" class="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5 z-50" aria-label="Menu">
+          <span class="block w-6 h-px bg-white transition-all duration-300"></span>
+          <span class="block w-6 h-px bg-white transition-all duration-300"></span>
+          <span class="block w-6 h-px bg-white transition-all duration-300"></span>
+        </button>
+      </div>
+    </nav>
+  </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden hidden glass-dark border-t border-white/10">
-    <div class="px-4 py-6 space-y-4">
-      <a href={base} class="block text-white/80 hover:text-brand-cyan py-2 text-lg font-medium transition">Accueil</a>
-      <a href={base + "services"} class="block text-white/80 hover:text-brand-cyan py-2 text-lg font-medium transition">Services</a>
-      <a href={base + "about"} class="block text-white/80 hover:text-brand-cyan py-2 text-lg font-medium transition">À Propos</a>
-      <a href={base + "portfolio"} class="block text-white/80 hover:text-brand-cyan py-2 text-lg font-medium transition">Réalisations</a>
-      <a href={base + "contact"} class="block text-white/80 hover:text-brand-cyan py-2 text-lg font-medium transition">Contact</a>
-      <a href={base + "pricing"} class="block text-white/80 hover:text-brand-cyan py-2 text-lg font-medium transition">Pricing</a>
-      <a href={base + "contact"} class="btn-primary inline-block text-center !px-8 !py-3 mt-4">Demander un devis</a>
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-brand-navy/98 backdrop-blur-xl flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 md:hidden">
+    <div class="flex flex-col items-center gap-8">
+      {navLinks.map((link, i) => (
+        <a
+          href={link.href}
+          class="text-3xl font-kanit font-bold text-white/80 hover:text-brand-cyan transition-colors duration-300 tracking-tight"
+          style={{ transitionDelay: `${i * 0.1}s` }}
+        >
+          <span class="text-sm font-mono text-brand-cyan block text-center">{link.number}</span>
+          {link.name}
+        </a>
+      ))}
+      <a href={base + "contact"} class="mt-8 btn-primary text-base !px-10 !py-4">
+        Démarrer un projet →
+      </a>
     </div>
   </div>
 </header>
 
 <script>
-  const header = document.getElementById('header');
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
+  (function() {
+    const header = document.getElementById('header');
+    const navContainer = document.getElementById('nav-container');
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let isMenuOpen = false;
 
-  // Scroll effect
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header.classList.add('glass-dark');
-      header.classList.remove('bg-transparent');
-    } else {
-      header.classList.remove('glass-dark');
-    }
-  });
-
-  // Mobile menu toggle
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('open');
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  // Close menu on link click
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.classList.remove('open');
-      mobileMenu.classList.add('hidden');
+    // Scroll effect
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.scrollY > 50;
+          const navContainer_ = document.getElementById('nav-container');
+          if (navContainer_) {
+            if (scrolled) {
+              navContainer_.className = navContainer_.className
+                .replace('max-w-full bg-transparent', 'max-w-5xl rounded-2xl bg-brand-navy/80 backdrop-blur-2xl border border-white/10 shadow-2xl');
+            } else {
+              navContainer_.className = navContainer_.className
+                .replace('max-w-5xl rounded-2xl bg-brand-navy/80 backdrop-blur-2xl border border-white/10 shadow-2xl', 'max-w-full bg-transparent');
+            }
+          }
+          // Add scrolled class to header for CSS
+          header?.classList.toggle('scrolled', scrolled);
+          
+          // Adjust nav padding on scroll
+          const navs = document.querySelectorAll('nav');
+          navs.forEach(nav => {
+            if (scrolled) {
+              nav.classList.add('py-3');
+              nav.classList.remove('py-6');
+            } else {
+              nav.classList.remove('py-3');
+              nav.classList.add('py-6');
+            }
+          });
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
-  });
+
+    // Mobile menu toggle
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = 'hidden';
+          // Animate hamburger to X
+          const spans = menuToggle.querySelectorAll('span');
+          if (spans.length >= 3) {
+            spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+          }
+        } else {
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = '';
+          const spans = menuToggle.querySelectorAll('span');
+          if (spans.length >= 3) {
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '';
+            spans[2].style.transform = '';
+          }
+        }
+      });
+
+      // Close menu on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          isMenuOpen = false;
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = '';
+          const spans = menuToggle.querySelectorAll('span');
+          if (spans.length >= 3) {
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '';
+            spans[2].style.transform = '';
+          }
+        });
+      });
+    }
+  })();
 </script>
