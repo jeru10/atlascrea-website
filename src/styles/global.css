@@ -2,38 +2,44 @@
 
 /* ═══════════════════════════════════════
    ATLAS CREA — Studio Créatif à Marrakech
-   Premium Design System v3 (Agency Ultimate)
+   Create® Design System
    ═══════════════════════════════════════ */
 
 @theme {
-  /* Brand Colors */
-  --color-brand-navy: #020E26;
-  --color-brand-purple: #5532E4;
-  --color-brand-cyan: #15CFCC;
-  --color-brand-blue: #138CFF;
+  /* Brand Colors — Create® Studio inspired (keeping old names for compat) */
+  --color-brand-navy: #000000;
+  --color-brand-purple: #ff6041;
+  --color-brand-cyan: #ff6041;
+  --color-brand-blue: #ffffff;
+  --color-brand-black: #000000;
+  --color-brand-orange: #ff6041;
   
   /* Surface */
-  --color-surface-base: #020E26;
-  --color-surface-card: rgba(255, 255, 255, 0.04);
+  --color-surface-base: #000000;
+  --color-surface-muted: #f2f2f2;
+  --color-surface-card: rgba(255, 255, 255, 0.03);
   --color-surface-elevated: rgba(255, 255, 255, 0.06);
   --color-surface-border: rgba(255, 255, 255, 0.08);
+  --color-surface-hover: rgba(255, 255, 255, 0.05);
   
   /* Text */
   --color-text-primary: #ffffff;
-  --color-text-secondary: rgba(255, 255, 255, 0.6);
-  --color-text-tertiary: rgba(255, 255, 255, 0.35);
-  --color-text-accent: #15CFCC;
-  --color-text-inverse: rgba(255, 255, 255, 0.08);
+  --color-text-secondary: #797d82;
+  --color-text-tertiary: #ff6041;
+  --color-text-inverse: #5c6063;
+  --color-text-subtle: rgba(255, 255, 255, 0.35);
+  --color-text-accent: #ff6041;
   
-  /* Fonts */
-  --font-kanit: 'Kanit', sans-serif;
-  --font-inter: 'Inter', sans-serif;
+  /* Fonts (keeping old names for compat) */
+  --font-kanit: 'Figtree', sans-serif;
+  --font-inter: 'Figtree', 'Figtree Placeholder', sans-serif;
+  --font-figtree: 'Figtree', sans-serif;
+  --font-primary: 'Figtree', 'Figtree Placeholder', sans-serif;
   
   /* Animations */
   --duration-fast: 0.2s;
   --duration-normal: 0.4s;
   --duration-slow: 0.8s;
-  --duration-slower: 1.2s;
   --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
@@ -41,9 +47,14 @@
 
 /* ═══════════ BASE ═══════════ */
 body {
-  font-family: 'Inter', sans-serif;
-  background: #020E26;
-  color: white;
+  font-family: 'Figtree', 'Figtree Placeholder', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.8px;
+  background: #000000;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Lenis: overflow hidden when active */
