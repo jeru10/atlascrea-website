@@ -1,105 +1,56 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { pricingPlans } from '../data/siteData';
+const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
+
+const plans = [
+  { name: 'Starter', price: '2 500', desc: "Idéal pour démarrer votre présence digitale avec l'essentiel.", featured: false, features: ['Logo professionnel', 'Carte de visite', 'Page Facebook / Instagram', 'Pack de 10 posts', 'Livraison en 7 jours'] },
+  { name: 'Grow', price: '5 500', desc: "Pour les entreprises prêtes à accélérer leur croissance.", featured: true, features: ['Tout Starter inclus', 'Identité visuelle complète', 'Landing page professionnelle', 'Gestion réseaux sociaux (1 mois)', 'Stratégie de contenu', 'Support prioritaire'] },
+  { name: 'Full Presence', price: '9 500', desc: "La solution complète pour une présence digitale de A à Z.", featured: false, features: ['Tout Grow inclus', 'Site web complet', 'Campagne Meta Ads', 'Vidéo promotionnelle', 'Design extérieur (enseigne/banderole)', 'Gestion réseaux sociaux (3 mois)', 'Suivi & reporting mensuel'] },
+];
 ---
 
-<Layout title="Pricing — ATLAS CREA | Nos Formules" description="Découvrez nos formules de création de site web. Basic, Pro ou Enterprise, trouvez la solution adaptée à votre budget.">
+<Layout title="Pricing — ATLAS CREA | Nos Offres" description="Découvrez nos formules : Starter, Grow et Full Presence. Solutions adaptées à tous les budgets.">
+  <div class="noise-overlay"></div>
 
   <!-- Hero -->
-  <section class="pt-32 pb-20 gradient-hero relative overflow-hidden">
-    <div class="absolute top-1/4 right-1/3 w-80 h-80 rounded-full bg-brand-purple/15 blur-[100px]"></div>
-    <div class="absolute bottom-0 left-1/4 w-72 h-72 rounded-full bg-brand-cyan/10 blur-[90px]"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <h1 class="text-4xl sm:text-6xl font-bold text-white mb-6">Nos <span class="gradient-text">Formules</span></h1>
-      <p class="text-xl text-white/60 max-w-2xl mx-auto">Des solutions adaptées à tous les budgets. Commencez petit, évoluez grand.</p>
+  <section class="pt-36 pb-20 bg-brand-navy relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-cyan/5 blur-[120px] rounded-full"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="section-label">TARIFS</div>
+      <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-kanit font-bold leading-[0.95] text-white mb-6">
+        Des offres <span class="gradient-text">adaptées.</span>
+      </h1>
+      <p class="text-white/50 text-lg max-w-2xl">Des formules flexibles pour accompagner votre croissance, quel que soit votre budget.</p>
     </div>
   </section>
 
-  <!-- Pricing Cards -->
+  <!-- Pricing Grid -->
   <section class="py-20 bg-brand-navy">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-3 gap-8 items-start">
-        {pricingPlans.map(plan => (
-          <div class={`pricing-card section-fade ${plan.featured ? 'featured relative' : ''}`}>
-            {plan.featured && (
-              <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-purple to-brand-cyan text-xs font-bold text-white">
-                POPULAIRE
-              </div>
-            )}
-            <h3 class="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+      <div class="grid md:grid-cols-3 gap-6 stagger-children">
+        {plans.map((plan, i) => (
+          <div class={`pricing-card ${plan.featured ? 'featured' : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
+            {plan.featured && <div class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-brand-purple to-brand-cyan text-[10px] font-bold text-white uppercase tracking-widest mb-4">Populaire</div>}
+            <h3 class="text-lg font-kanit font-bold text-white mb-2">{plan.name}</h3>
             <p class="text-white/40 text-sm mb-6">{plan.desc}</p>
             <div class="mb-8">
-              <span class="text-5xl font-bold gradient-text">{plan.price}</span>
-              <span class="text-white/30 text-lg"> DH</span>
+              <span class="text-4xl md:text-5xl font-kanit font-bold gradient-text">{plan.price}</span>
+              <span class="text-white/30 text-sm ml-1">MAD</span>
             </div>
-            <ul class="space-y-4 mb-10">
-              {plan.features.map(f => (
-                <li class="flex gap-3">
-                  <svg class="w-5 h-5 text-brand-cyan flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  <span class="text-white/60 text-sm">{f}</span>
+            <ul class="space-y-3 mb-10">
+              {plan.features.map((f) => (
+                <li class="flex items-start gap-3 text-sm text-white/50">
+                  <svg class="w-4 h-4 text-brand-cyan mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  {f}
                 </li>
               ))}
             </ul>
-            <a href="contact" class={`w-full text-center py-3 rounded-full font-semibold text-sm transition-all duration-300 block ${
-              plan.featured 
-              ? 'bg-gradient-to-r from-brand-purple to-brand-blue text-white hover:shadow-lg hover:shadow-brand-purple/30' 
-              : 'border border-white/20 text-white hover:bg-white/5'
-            }`}>
+            <a href={base + "contact"} class={`w-full text-center py-3 rounded-full font-semibold text-sm transition-all duration-300 block ${plan.featured ? 'bg-gradient-to-r from-brand-purple to-brand-blue text-white hover:shadow-lg hover:shadow-brand-purple/30' : 'border border-white/20 text-white hover:bg-white/5'}`}>
               Choisir cette formule
             </a>
           </div>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="py-20 relative">
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-purple/5 to-brand-navy"></div>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="section-fade text-center mb-14">
-        <h2 class="text-3xl sm:text-4xl font-bold text-white">Questions <span class="gradient-text">Fréquentes</span></h2>
-      </div>
-      <div class="space-y-4">
-        <details class="glass rounded-2xl p-6 group cursor-pointer">
-          <summary class="text-white font-semibold flex items-center justify-between list-none">
-            Combien de temps dure la création d'un site ?
-            <svg class="w-5 h-5 text-white/40 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <p class="text-white/50 mt-4 text-sm leading-relaxed">En moyenne 2 à 4 semaines pour un site vitrine, 4 à 8 semaines pour un site plus complexe avec fonctionnalités avancées.</p>
-        </details>
-        <details class="glass rounded-2xl p-6 group cursor-pointer">
-          <summary class="text-white font-semibold flex items-center justify-between list-none">
-            Proposez-vous l'hébergement ?
-            <svg class="w-5 h-5 text-white/40 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <p class="text-white/50 mt-4 text-sm leading-relaxed">Oui, l'hébergement est inclus dans nos formules pour la première année. Nous utilisons des serveurs高性能 et sécurisés pour garantir les meilleures performances.</p>
-        </details>
-        <details class="glass rounded-2xl p-6 group cursor-pointer">
-          <summary class="text-white font-semibold flex items-center justify-between list-none">
-            Puis-je modifier mon site moi-même ?
-            <svg class="w-5 h-5 text-white/40 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <p class="text-white/50 mt-4 text-sm leading-relaxed">Absolument ! Nous construisons vos sites sur WordPress ou des solutions flexibles qui vous permettent de modifier le contenu facilement. Nous proposons aussi une formation pour votre équipe.</p>
-        </details>
-        <details class="glass rounded-2xl p-6 group cursor-pointer">
-          <summary class="text-white font-semibold flex items-center justify-between list-none">
-            Proposez-vous un service après-vente ?
-            <svg class="w-5 h-5 text-white/40 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <p class="text-white/50 mt-4 text-sm leading-relaxed">Oui, nous assurons un suivi complet après la livraison. Maintenance, mises à jour et support technique sont inclus selon la formule choisie.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-20 bg-brand-navy">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center section-fade">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Pas sûr de la formule qu'il vous faut ?</h2>
-      <p class="text-white/50 text-lg mb-8">Contactez-nous pour un devis personnalisé</p>
-      <a href="contact" class="btn-primary text-base !px-10 !py-4">Demander un devis</a>
     </div>
   </section>
 </Layout>
