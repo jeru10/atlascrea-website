@@ -212,9 +212,11 @@ body {
 /* ═══════════ PROCESS STICKY CARD ═══════════ */
 .process-card {
   padding: 48px 56px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #020E26;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
   transition: all var(--duration-normal) var(--ease-smooth);
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(85, 50, 228, 0.06) 0%, transparent 60%);
 }
 .process-card:hover {
   border-color: rgba(21, 207, 204, 0.25);

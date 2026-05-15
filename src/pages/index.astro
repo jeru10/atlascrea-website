@@ -47,8 +47,11 @@ const testimonials = [
   <main>
     <!-- ═══════════ HERO ═══════════ -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy">
+      <!-- 3D Canvas -->
+      <div id="hero-3d" class="absolute inset-0 z-0"></div>
+
       <!-- Background Gradient -->
-      <div class="absolute inset-0">
+      <div class="absolute inset-0 z-[1]">
         <div class="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-navy/80 to-brand-navy scale-110"></div>
         <div class="absolute inset-x-0 top-0 h-[50%] bg-gradient-to-b from-[#5532E4]/10 via-transparent to-transparent"></div>
         <div class="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-brand-purple/5 blur-[120px]"></div>
@@ -354,4 +357,19 @@ const testimonials = [
       </div>
     </section>
   </main>
+
+  <!-- 3D Hero Animation (Three.js) -->
+  <script>
+    import AtlasHero3D from '../components/ThreeBackground.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('hero-3d');
+      if (container && window.innerWidth > 768) {
+        new AtlasHero3D(container);
+      } else if (container) {
+        // Fallback: subtle gradient animation on mobile
+        container.style.background = 'radial-gradient(ellipse at center, rgba(85,50,228,0.1) 0%, transparent 70%)';
+      }
+    });
+  </script>
 </Layout>
