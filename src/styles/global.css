@@ -8,11 +8,10 @@
 @theme {
   /* Brand Colors */
   --color-brand-navy: #020E26;
-  --color-brand-orange: #ff6041;
-  --color-brand-purple: #ff6041;
-  --color-brand-cyan: #ff6041;
-  --color-brand-blue: #ffffff;
-  --color-brand-orange-dark: #e04a2f;
+  --color-brand-orange: #ffffff;
+  --color-brand-purple: #ffffff;
+  --color-brand-cyan: #ffffff;
+  --color-brand-blue: #138CFF;
   --color-brand-white: #ffffff;
   
   /* Surface */
@@ -26,10 +25,10 @@
   /* Text */
   --color-text-primary: #ffffff;
   --color-text-secondary: #797d82;
-  --color-text-tertiary: #ff6041;
-  --color-text-inverse: #5c6063;
+  --color-text-tertiary: rgba(255, 255, 255, 0.35);
+  --color-text-inverse: rgba(255, 255, 255, 0.08);
   --color-text-subtle: rgba(255, 255, 255, 0.35);
-  --color-text-accent: #ff6041;
+  --color-text-accent: #ffffff;
   
   /* Fonts */
   --font-kanit: 'Figtree', sans-serif;
