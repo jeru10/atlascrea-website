@@ -209,6 +209,45 @@ body {
   border-color: rgba(21, 207, 204, 0.2);
 }
 
+/* ═══════════ SERVICE CATEGORY ROW (Template-style) ═══════════ */
+.service-category-row {
+  padding: 32px 0;
+  transition: all var(--duration-normal) var(--ease-smooth);
+  cursor: default;
+}
+.service-category-row:hover {
+  border-color: rgba(21, 207, 204, 0.15) !important;
+}
+.service-category-row:hover h3 {
+  color: rgba(21, 207, 204, 0.8);
+  transition: color var(--duration-normal) var(--ease-smooth);
+}
+
+/* ═══════════ FAQ ═══════════ */
+.faq-item {
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+.faq-toggle {
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-smooth);
+}
+.faq-toggle:hover span:first-child {
+  color: white;
+}
+.plus-sign {
+  font-size: 18px;
+  font-weight: 300;
+  transition: transform var(--duration-fast) var(--ease-smooth);
+  display: inline-block;
+}
+.faq-answer {
+  animation: fadeIn 0.3s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ═══════════ PROCESS STICKY CARD ═══════════ */
 .process-card {
   padding: 48px 56px;
