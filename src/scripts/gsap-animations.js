@@ -15,13 +15,12 @@ function init() {
   // ─── 2. HERO — Animated gradient accelerator on scroll ───
   const hero = document.querySelector('#hero-section');
   if (hero) {
-    // The hero bg gradient orbs move subtly on scroll
     const orbs = hero.querySelectorAll('[class*="animate-hero-orb"]');
     if (orbs.length) {
       gsap.to(orbs, {
         y: () => -window.innerHeight * 0.08,
-        scale: 0.95,
-        opacity: 0.4,
+        scale: 0.9,
+        opacity: 0.2,
         ease: 'none',
         scrollTrigger: {
           trigger: hero,
