@@ -165,6 +165,16 @@
 
   function init() {
     requestAnimationFrame(() => {
+      // Safety cleanup from older cached versions
+      document.querySelectorAll('.atlas-3d-hidden, .atlas-3d-visible').forEach(function (el) {
+        el.classList.remove('atlas-3d-hidden', 'atlas-3d-visible');
+        el.style.opacity = '';
+        el.style.transitionDelay = '';
+      });
+      document.querySelectorAll('.atlas-img-wrap').forEach(function (wrap) {
+        wrap.classList.add('atlas-revealed');
+      });
+
       initTiltCards();
       initHeroFloat();
       initMagneticButtons();
