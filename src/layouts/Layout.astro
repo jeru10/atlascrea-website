@@ -279,9 +279,32 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
       })();
     </script>
 
+    <!-- ── HERO MOUSE GLOW ── -->
+    <script is:inline>
+    (function() {
+      var hero = document.querySelector('.hero-mesh');
+      if (!hero) return;
+      hero.addEventListener('mousemove', function(e) {
+        var rect = hero.getBoundingClientRect();
+        var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+        var y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+        hero.style.setProperty('--glow-x', x + '%');
+        hero.style.setProperty('--glow-y', y + '%');
+        hero.style.background = [
+          'radial-gradient(ellipse 35% 35% at ' + x + '% ' + y + '%, rgba(54,84,227,0.10) 0%, transparent 55%)',
+          'radial-gradient(ellipse 60% 50% at 75% 30%, rgba(45,168,226,0.15) 0%, transparent 60%)',
+          'radial-gradient(ellipse 50% 60% at 15% 75%, rgba(34,211,197,0.10) 0%, transparent 55%)',
+          '#020E26'
+        ].join(',');
+      });
+    })();
+    </script>
+
     <!-- Enhancements -->
     <script src={base + 'scripts/enhancements.js'}></script>
     <!-- 3D Animations (Framer-style) -->
     <script src={base + 'js/3d-animations.js'}></script>
+    <!-- Scroll Animations (data-scroll system) -->
+    <script src={base + 'js/scroll-animations.js'}></script>
   </body>
 </html>

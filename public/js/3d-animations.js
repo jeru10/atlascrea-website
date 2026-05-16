@@ -304,6 +304,38 @@
   }
 
   /* ───────────────────────────────────────────────
+     ANIMATION 8 — PORTFOLIO SCREENSHOTS
+     Replace placeholder images with themed shots
+     ─────────────────────────────────────────────── */
+  function initPortfolioScreenshots() {
+    const portfolioScreenshots = {
+      'Munich Recruitment':   'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=75&auto=format',
+      'Abdol Luxury Tour':    'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=75&auto=format',
+      'Mondrap':              'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=75&auto=format',
+      'Potentiel Consulting': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=75&auto=format',
+      'Atlas Epic Trek':      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=75&auto=format',
+      'Charpente Maroc':      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=75&auto=format',
+    };
+
+    // Find all portfolio cards and check if they already have real images
+    document.querySelectorAll('.portfolio-card, [class*="portfolio"] > a, .portfolio-item').forEach(card => {
+      const img = card.querySelector('img');
+      if (!img) return;
+
+      // Find the project name
+      const nameEl = card.querySelector('h3, [class*="name"], h4');
+      if (!nameEl) return;
+
+      const projectName = nameEl.textContent.trim();
+      const newSrc = portfolioScreenshots[projectName];
+      if (newSrc && img.getAttribute('src') !== newSrc) {
+        img.setAttribute('src', newSrc);
+        img.setAttribute('loading', 'lazy');
+      }
+    });
+  }
+
+  /* ───────────────────────────────────────────────
      INIT ALL — Start after DOM ready
      ─────────────────────────────────────────────── */
   function init() {
@@ -315,6 +347,7 @@
       initMagneticButtons();
       initImageClipReveal();
       initCustomCursor();
+      initPortfolioScreenshots();
     });
   }
 
