@@ -3,54 +3,166 @@ import Layout from '../layouts/Layout.astro';
 const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
 const plans = [
-  { name: 'Starter', price: '2 500', desc: "Idéal pour démarrer votre présence digitale avec l'essentiel.", featured: false, features: ['Logo professionnel', 'Carte de visite', 'Page Facebook / Instagram', 'Pack de 10 posts', 'Livraison en 7 jours'] },
-  { name: 'Grow', price: '5 500', desc: "Pour les entreprises prêtes à accélérer leur croissance.", featured: true, features: ['Tout Starter inclus', 'Identité visuelle complète', 'Landing page professionnelle', 'Gestion réseaux sociaux (1 mois)', 'Stratégie de contenu', 'Support prioritaire'] },
-  { name: 'Full Presence', price: '9 500', desc: "La solution complète pour une présence digitale de A à Z.", featured: false, features: ['Tout Grow inclus', 'Site web complet', 'Campagne Meta Ads', 'Vidéo promotionnelle', 'Design extérieur (enseigne/banderole)', 'Gestion réseaux sociaux (3 mois)', 'Suivi & reporting mensuel'] },
+  {
+    name: 'Essential',
+    price: '5 000',
+    unit: 'DH',
+    desc: 'Idéal pour les petites structures qui veulent une identité claire.',
+    features: ['Logo + charte graphique', 'Site vitrine 1 page', '3 posts réseaux sociaux', '1 template email', 'Livraison sous 10 jours'],
+    cta: 'Choisir Essential',
+    popular: false,
+  },
+  {
+    name: 'Pro',
+    price: '12 000',
+    unit: 'DH',
+    desc: 'La solution complète pour une marque qui veut percer.',
+    features: ['Identité de marque complète', 'Site 5 pages optimisé SEO', '8 posts + 2 reels/mois', 'Google My Business', 'Meta Ads (budget: 1 500 DH)', 'Livraison sous 3 semaines'],
+    cta: 'Choisir Pro',
+    popular: true,
+  },
+  {
+    name: 'Premium',
+    price: '25 000',
+    unit: 'DH',
+    desc: 'Pour les projets ambitieux avec un accompagnement sur-mesure.',
+    features: ['Brand strategy complète', 'Site web sur mesure + CMS', 'Social Media Full (20 posts + 4 reels/mois)', 'Meta + Google Ads (budget: 3 000 DH)', 'Reporting mensuel', 'Support prioritaire 7j/7'],
+    cta: 'Choisir Premium',
+    popular: false,
+  },
+  {
+    name: 'Sur Mesure',
+    price: 'Sur devis',
+    unit: '',
+    desc: 'Un besoin spécifique ? On construit ensemble une solution unique.',
+    features: ['Audit personnalisé', 'Stratégie sur-mesure', 'Développement dédié', 'Design custom', 'Suivi & optimisation', 'Reporting hebdomadaire'],
+    cta: 'Demander un devis',
+    popular: false,
+  },
 ];
 ---
 
-<Layout title="Pricing — ATLAS CREA | Nos Offres" description="Découvrez nos formules : Starter, Grow et Full Presence. Solutions adaptées à tous les budgets.">
-  <div class="noise-overlay"></div>
+<Layout title="Pricing — ATLAS CREA | Nos Formules" description="Découvrez nos formules de communication digitale à Marrakech. Des pack adaptés à tous les budgets.">
 
-  <!-- Hero -->
-  <section class="pt-36 pb-20 bg-brand-navy relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-cyan/5 blur-[120px] rounded-full"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="section-label">TARIFS</div>
-      <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-kanit font-bold leading-[0.95] text-white mb-6">
-        Des offres <span class="gradient-text">adaptées.</span>
+  <!-- ═══════ HERO ═══════ -->
+  <section class="relative min-h-[60vh] flex items-center pt-32 pb-20 overflow-hidden bg-bg">
+    <div class="absolute inset-0 hero-mesh"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-scanlines"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-muted mb-6">Tarifs</p>
+      <h1 class="font-syne font-extrabold text-[clamp(3rem,8vw,6rem)] leading-[0.9] tracking-[-0.03em] text-white max-w-4xl mb-6">
+        <span class="word-reveal" data-delay="1.0"><span>Nos</span></span>{' '}
+        <span class="word-reveal text-sky italic" data-delay="1.06"><span>formules</span></span>
       </h1>
-      <p class="text-white/50 text-lg max-w-2xl">Des formules flexibles pour accompagner votre croissance, quel que soit votre budget.</p>
+      <p class="hero-reveal text-muted text-sm sm:text-base font-dm font-light max-w-xl mb-10" data-delay="1.4">
+        Des packs transparents, adaptés à tous les projets.
+      </p>
+    </div>
+
+    <div class="absolute right-8 bottom-8 hidden lg:flex flex-col items-center gap-3 z-10">
+      <span class="text-[10px] font-mono tracking-[0.2em] text-muted vertical-rl" style="writing-mode: vertical-rl;">TARIFS</span>
+      <div class="w-px h-16 bg-gradient-to-b from-muted to-transparent"></div>
     </div>
   </section>
 
-  <!-- Pricing Grid -->
-  <section class="py-20 bg-surface-alt">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-3 gap-6 stagger-children">
-        {plans.map((plan, i) => (
-          <div class={`pricing-card ${plan.featured ? 'featured' : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
-            {plan.featured && <div class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-brand-purple to-brand-cyan text-[10px] font-bold text-white uppercase tracking-widest mb-4">Populaire</div>}
-            <h3 class="text-lg font-kanit font-bold text-white mb-2">{plan.name}</h3>
-            <p class="text-white/40 text-sm mb-6">{plan.desc}</p>
+  <!-- ═══════ MARQUEE ═══════ -->
+  <div class="marquee py-3" style="background: #3654E3;">
+    <div class="marquee-inner text-[11px] font-syne font-bold uppercase tracking-[0.2em]" style="color: #020E26;">
+      <span>Transparent</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Flexible</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Sur-mesure</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Sans engagement</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Transparent</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Flexible</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Sur-mesure</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Sans engagement</span><span class="marquee-dot" style="background:#020E26;"></span>
+    </div>
+  </div>
+
+  <!-- ═══════ PRICING ═══════ -->
+  <section class="py-24 lg:py-32 bg-bg section-divider">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-blue mb-4 mb-8">Tarifs</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {plans.map((plan) => (
+          <div class="relative p-8 border transition-all duration-500 hover:border-blue/40 hover:bg-blue/[0.02] flex flex-col"
+               class:list={[plan.popular ? 'border-blue/40 bg-blue/[0.03]' : 'border-border bg-transparent']}>
+            {plan.popular && (
+              <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-blue text-white text-[9px] font-mono uppercase tracking-[0.15em] px-3 py-1">
+                Recommandé
+              </span>
+            )}
+            <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-muted mb-1">Forfait</p>
+            <h3 class="font-syne font-bold text-xl text-white mb-8">{plan.name}</h3>
+
             <div class="mb-8">
-              <span class="text-4xl md:text-5xl font-kanit font-bold gradient-text">{plan.price}</span>
-              <span class="text-white/30 text-sm ml-1">MAD</span>
+              <p class="font-syne font-extrabold text-white text-3xl sm:text-4xl">{plan.price}<span class="text-muted text-base font-dm font-light">{plan.unit ? ' ' + plan.unit : ''}</span></p>
             </div>
-            <ul class="space-y-3 mb-10">
+
+            <p class="text-muted font-dm font-light text-xs leading-relaxed mb-8">{plan.desc}</p>
+
+            <ul class="space-y-3 mb-10 flex-1">
               {plan.features.map((f) => (
-                <li class="flex items-start gap-3 text-sm text-white/50">
-                  <svg class="w-4 h-4 text-brand-cyan mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  {f}
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-3.5 h-3.5 text-teal mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span class="text-muted font-dm font-light text-xs">{f}</span>
                 </li>
               ))}
             </ul>
-            <a href={base + "contact"} class={`w-full text-center py-3 rounded-full font-semibold text-sm transition-all duration-300 block ${plan.featured ? 'bg-gradient-to-r from-brand-purple to-brand-blue text-white hover:shadow-lg hover:shadow-brand-purple/30' : 'border border-white/20 text-white hover:bg-white/5'}`}>
-              Choisir cette formule
-            </a>
+
+            <a href={base + "contact"} class="btn-primary w-full justify-center">{plan.cta}</a>
           </div>
         ))}
       </div>
     </div>
   </section>
+
+  <!-- ═══════ FAQ ═══════ -->
+  <section class="py-24 lg:py-32 section-alt-6 section-divider">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-blue mb-4">FAQ</p>
+      <h2 class="font-syne font-extrabold text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-white mb-12 max-w-2xl">
+        Questions <span class="text-sky">fréquentes</span>
+      </h2>
+
+      <div class="space-y-0">
+        {[
+          { q: 'Quels sont les délais de livraison ?', a: 'Les délais varient selon le projet. Comptez 10 jours pour un Essential, 3 semaines pour un Pro, et jusqu\'à 6 semaines pour un projet Premium sur-mesure.' },
+          { q: 'Proposez-vous un service après-vente ?', a: 'Absolument. Chaque projet inclut un mois de support post-livraison pour vous assurer une transition en douceur.' },
+          { q: 'Puis-je voir des exemples concrets ?', a: 'Bien sûr ! Consultez notre portfolio pour découvrir nos réalisations récentes dans divers secteurs.' },
+          { q: 'Comment se passe le paiement ?', a: 'Nous travaillons en deux versements : 50% à la signature du devis, 50% à la livraison finale.' },
+          { q: 'Êtes-vous basés à Marrakech uniquement ?', a: 'Nous sommes basés à Marrakech, mais nous travaillons avec des clients partout au Maroc et à l\'international.' },
+        ].map((faq) => (
+          <div class="faq-item border-b border-border py-6 group cursor-pointer">
+            <div class="faq-question flex justify-between items-center gap-4">
+              <h3 class="font-syne font-bold text-white text-sm group-hover:text-sky transition-colors">{faq.q}</h3>
+              <svg class="faq-icon w-4 h-4 text-muted shrink-0 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p class="text-muted font-dm font-light text-sm leading-relaxed pt-4">{faq.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="py-24 lg:py-32 section-alt-8 section-divider">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-blue mb-4">Contact</p>
+      <h2 class="font-syne font-extrabold text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-white mb-6">
+        Pas convaincu <span class="text-sky">?</span>
+      </h2>
+      <p class="text-muted font-dm font-light text-sm sm:text-base max-w-lg mx-auto mb-10">
+        Discutons de votre projet et trouvons la formule parfaite.
+      </p>
+      <a href={base + "contact"} class="btn-primary">Demander un devis →</a>
+    </div>
+  </section>
+
 </Layout>

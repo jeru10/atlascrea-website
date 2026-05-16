@@ -2,52 +2,81 @@
 import Layout from '../layouts/Layout.astro';
 const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
-const projects = [
-  { name: "Munich Recruitment", url: "https://www.munichrecruitment.com", cat: "Recrutement", desc: "Plateforme de recrutement premium", image: "images/portfolio/munich-recruitment.jpg" },
-  { name: "Abdol Luxury Tour", url: "https://abdoluxurytour.com", cat: "Tourisme de luxe", desc: "Expérience voyage haut de gamme", image: "images/portfolio/abdoluxurytour.jpg" },
-  { name: "Mondrap", url: "https://mondrap.com", cat: "Mode & Vêtements", desc: "E-commerce de prêt-à-porter", image: "images/portfolio/mondrap.jpg" },
-  { name: "Potentiel Consulting", url: "https://www.potentielconsulting.ma", cat: "Conseil", desc: "Site vitrine consulting", image: "images/portfolio/potentiel-consulting.jpg" },
-  { name: "Atlas Epic Trek", url: "https://atlasepictrek.com", cat: "Aventure", desc: "Plateforme de trekking", image: "images/portfolio/atlasepictrek.jpg" },
-  { name: "Charpente Maroc", url: "https://charpente-maroc.com", cat: "Construction", desc: "Site professionnel charpente", image: "images/portfolio/charpente-maroc.jpg" },
+const portfolioItems = [
+  { name: 'Munich Recruitment', cat: 'Recrutement', tags: ['React', 'TypeScript', 'Tailwind'], image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80', url: 'https://www.munichrecruitment.com' },
+  { name: 'Abdol Luxury Tour', cat: 'Tourisme', tags: ['Webflow', 'JS', 'Custom CMS'], image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80', url: 'https://abdoluxurytour.com' },
+  { name: 'Mondrap', cat: 'Mode', tags: ['Shopify', 'Liquid', 'Alpine'], image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80', url: 'https://mondrap.com' },
+  { name: 'Potentiel Consulting', cat: 'Conseil', tags: ['WordPress', 'Elementor', 'PHP'], image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80', url: 'https://www.potentielconsulting.ma' },
+  { name: 'Atlas Epic Trek', cat: 'Aventure', tags: ['Next.js', 'Tailwind', 'Vercel'], image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', url: 'https://atlasepictrek.com' },
+  { name: 'Charpente Maroc', cat: 'Construction', tags: ['WordPress', 'Custom Theme'], image: 'https://images.unsplash.com/photo-1541888946425-d81bb6f0aa76?w=800&q=80', url: 'https://charpente-maroc.com' },
 ];
 ---
 
-<Layout title="Réalisations — ATLAS CREA | Portfolio" description="Découvrez nos réalisations : sites web, branding et identités visuelles pour nos clients.">
-  <div class="noise-overlay"></div>
+<Layout title="Réalisations — ATLAS CREA | Portfolio" description="Découvrez nos réalisations : sites web, branding et design digital pour nos clients à Marrakech et au Maroc.">
 
-  <!-- Hero -->
-  <section class="pt-36 pb-20 bg-brand-navy relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-purple/10 blur-[120px] rounded-full"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="section-label">NOS RÉALISATIONS</div>
-      <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-kanit font-bold leading-[0.95] text-white mb-6">
-        Des créations qui <span class="gradient-text">marquent.</span>
+  <!-- ═══════ HERO ═══════ -->
+  <section class="relative min-h-[70vh] flex items-center pt-32 pb-20 overflow-hidden bg-bg">
+    <div class="absolute inset-0 hero-mesh"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-scanlines"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-muted mb-6">Réalisations</p>
+      <h1 class="font-syne font-extrabold text-[clamp(3rem,8vw,6rem)] leading-[0.9] tracking-[-0.03em] text-white max-w-4xl mb-6">
+        <span class="word-reveal" data-delay="1.0"><span>Nos</span></span>{' '}
+        <span class="word-reveal text-teal italic" data-delay="1.06"><span>projets</span></span>
       </h1>
-      <p class="text-white/50 text-lg max-w-2xl">Chaque projet est une histoire unique. Découvrez nos dernières réalisations.</p>
+      <p class="hero-reveal text-muted text-sm sm:text-base font-dm font-light max-w-xl mb-10" data-delay="1.4">
+        Chaque projet raconte une histoire. Découvrez nos dernières créations.
+      </p>
+    </div>
+
+    <div class="absolute right-8 bottom-8 hidden lg:flex flex-col items-center gap-3 z-10">
+      <span class="text-[10px] font-mono tracking-[0.2em] text-muted vertical-rl" style="writing-mode: vertical-rl;">PROJETS</span>
+      <div class="w-px h-16 bg-gradient-to-b from-muted to-transparent"></div>
     </div>
   </section>
 
-  <!-- Portfolio Grid -->
-  <section class="py-20 bg-surface-alt">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-        {projects.map((project, i) => (
-          <a href={project.url} target="_blank" rel="noopener noreferrer" class="work-card group block">
-            <div class="aspect-[16/10] overflow-hidden relative">
-              <img src={project.image} alt={project.name} class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
-                <div class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl group-hover:rotate-12 transition-transform">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </div>
-              </div>
-              <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-[10px] font-mono uppercase tracking-widest text-white">{project.cat}</span>
-              </div>
+  <!-- ═══════ MARQUEE ═══════ -->
+  <div class="marquee py-3" style="background: #3654E3;">
+    <div class="marquee-inner text-[11px] font-syne font-bold uppercase tracking-[0.2em]" style="color: #020E26;">
+      <span>Web</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Branding</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>UX/UI</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>E-commerce</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>WordPress</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Design</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Motion</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Web</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Branding</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>UX/UI</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>E-commerce</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>WordPress</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Design</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Motion</span><span class="marquee-dot" style="background:#020E26;"></span>
+    </div>
+  </div>
+
+  <!-- ═══════ PORTFOLIO GRID ═══════ -->
+  <section class="py-24 lg:py-32 bg-bg section-divider">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {portfolioItems.map((item, i) => (
+          <a href={item.url} target="_blank" rel="noopener"
+             class="portfolio-card group relative overflow-hidden bg-border/10 block"
+             class:list={{ 'sm:col-span-2 sm:row-span-2': i === 0 }}>
+            <div class="aspect-[4/3] overflow-hidden" class:list={{ 'aspect-[4/3]': i !== 0, 'aspect-[16/10]': i === 0 }}>
+              <img src={item.image} alt={item.name}
+                   class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0" />
             </div>
-            <div class="p-5">
-              <h3 class="text-base font-kanit font-bold text-white group-hover:text-brand-cyan transition-colors">{project.name}</h3>
-              <p class="text-white/30 text-xs mt-1">{project.desc}</p>
+            <div class="absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+              <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-sky mb-1">{item.cat}</span>
+              <h3 class="font-syne font-bold text-white text-lg">{item.name}</h3>
+              <div class="flex flex-wrap gap-2 mt-2">
+                {item.tags.map((tag) => (
+                  <span class="text-[9px] font-mono uppercase tracking-[0.1em] px-2 py-1 border border-muted-strong/30 text-muted">{tag}</span>
+                ))}
+              </div>
             </div>
           </a>
         ))}
@@ -55,14 +84,18 @@ const projects = [
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-20 bg-brand-navy relative overflow-hidden border-t border-white/5">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center section-fade">
-      <h2 class="text-3xl sm:text-4xl font-kanit font-bold text-white mb-4">
-        Vous avez un projet <span class="gradient-text">en tête</span> ?
+  <!-- ═══════ CTA ═══════ -->
+  <section class="py-24 lg:py-32 section-alt-8 section-divider">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-blue mb-4">Contact</p>
+      <h2 class="font-syne font-extrabold text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-white mb-6">
+        Votre projet <span class="text-sky">ici</span> ?
       </h2>
-      <p class="text-white/40 text-lg mb-8">Parlons-en et créons quelque chose de grand ensemble.</p>
+      <p class="text-muted font-dm font-light text-sm sm:text-base max-w-lg mx-auto mb-10">
+        On construit ensemble votre solution digitale sur mesure.
+      </p>
       <a href={base + "contact"} class="btn-primary">Démarrer un projet →</a>
     </div>
   </section>
+
 </Layout>

@@ -4,37 +4,68 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 ---
 
 <Layout title="À Propos — ATLAS CREA | Studio Créatif à Marrakech" description="Studio créatif basé à Marrakech, spécialisé dans le branding, les sites web, le social media et le design.">
-  <div class="noise-overlay"></div>
 
-  <!-- Hero -->
-  <section class="pt-36 pb-20 bg-brand-navy relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-purple/10 blur-[120px] rounded-full"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="section-label">QUI SOMMES-NOUS</div>
-      <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-kanit font-bold leading-[0.95] text-white mb-6">
-        Studio créatif basé à <span class="gradient-text">Marrakech.</span>
+  <!-- ═══════ HERO ═══════ -->
+  <section class="relative min-h-[70vh] flex items-center pt-32 pb-20 overflow-hidden bg-bg">
+    <div class="absolute inset-0 hero-mesh"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-scanlines"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-muted mb-6">Qui sommes-nous</p>
+      <h1 class="font-syne font-extrabold text-[clamp(3rem,8vw,6rem)] leading-[0.9] tracking-[-0.03em] text-white max-w-4xl mb-6">
+        <span class="word-reveal" data-delay="1.0"><span>Studio</span></span>{' '}
+        <span class="word-reveal" data-delay="1.06"><span>créatif</span></span>{' '}
+        <span class="word-reveal" data-delay="1.12"><span>basé</span></span>{' '}
+        <span class="word-reveal text-sky italic" data-delay="1.18"><span>à</span></span>{' '}
+        <span class="word-reveal" data-delay="1.24"><span>Marrakech.</span></span>
       </h1>
-      <p class="text-white/50 text-lg max-w-2xl">Nous accompagnons les entreprises dans leur transformation digitale avec des solutions créatives et sur-mesure.</p>
+      <p class="hero-reveal text-muted text-sm sm:text-base font-dm font-light max-w-xl mb-10" data-delay="1.4">
+        Nous accompagnons les entreprises dans leur transformation digitale avec des solutions créatives et sur-mesure.
+      </p>
+    </div>
+
+    <div class="absolute right-8 bottom-8 hidden lg:flex flex-col items-center gap-3 z-10">
+      <span class="text-[10px] font-mono tracking-[0.2em] text-muted vertical-rl" style="writing-mode: vertical-rl;">SCROLL</span>
+      <div class="w-px h-16 bg-gradient-to-b from-muted to-transparent"></div>
     </div>
   </section>
 
-  <!-- Intro -->
-  <section class="py-20 bg-surface-alt">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-16 items-start section-fade">
+  <!-- ═══════ MARQUEE ═══════ -->
+  <div class="marquee py-3" style="background: #3654E3;">
+    <div class="marquee-inner text-[11px] font-syne font-bold uppercase tracking-[0.2em]" style="color: #020E26;">
+      <span>Création</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Innovation</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Stratégie</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Design</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Digital</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Branding</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Performance</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Création</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Innovation</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Stratégie</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Design</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Digital</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Branding</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Performance</span><span class="marquee-dot" style="background:#020E26;"></span>
+    </div>
+  </div>
+
+  <!-- ═══════ INTRO ═══════ -->
+  <section class="py-24 lg:py-32 bg-bg section-divider">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid md:grid-cols-2 gap-16 items-start">
         <div>
-          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple/20 to-brand-cyan/20 flex items-center justify-center mb-6">
-            <span class="font-kanit font-bold gradient-text text-lg">AC</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-kanit font-bold text-white leading-tight mb-6">
-            Une vision distincte à chaque projet, fusionnant <span class="gradient-text">stratégie + créativité</span> pour des marques audacieuses.
+          <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-blue mb-4">Notre Vision</p>
+          <h2 class="font-syne font-extrabold text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-white">
+            Une vision distincte à chaque projet, fusionnant <span class="text-sky">stratégie + créativité</span> pour des marques audacieuses.
           </h2>
         </div>
         <div class="space-y-6">
-          <p class="text-white/50 leading-relaxed">
+          <p class="text-muted font-dm font-light text-sm leading-relaxed">
             ATLAS CREA est un studio créatif basé à Marrakech, spécialisé dans la communication 360°. Nous accompagnons les marques dans leur transformation digitale avec des solutions créatives, stratégiques et sur-mesure.
           </p>
-          <p class="text-white/50 leading-relaxed">
+          <p class="text-muted font-dm font-light text-sm leading-relaxed">
             Notre équipe combine expertise technique et sens artistique pour créer des identités digitales qui se démarquent. Du branding à la création de sites web, en passant par le social media et le design print, nous offrons une gamme complète de services.
           </p>
         </div>
@@ -42,39 +73,92 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="py-16 bg-brand-navy border-t border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 section-fade">
-        <div class="text-center">
-          <p class="text-4xl sm:text-5xl font-kanit font-bold gradient-text">120<span class="text-white">+</span></p>
-          <p class="text-white/40 text-sm font-mono uppercase tracking-widest mt-2">Projets livrés</p>
-        </div>
-        <div class="text-center">
-          <p class="text-4xl sm:text-5xl font-kanit font-bold text-white">99<span class="text-white">%</span></p>
-          <p class="text-white/40 text-sm font-mono uppercase tracking-widest mt-2">Satisfaction client</p>
-        </div>
-        <div class="text-center">
-          <p class="text-4xl sm:text-5xl font-kanit font-bold text-white">3<span class="text-white">+</span></p>
-          <p class="text-white/40 text-sm font-mono uppercase tracking-widest mt-2">Ans d'expérience</p>
-        </div>
-        <div class="text-center">
-          <p class="text-4xl sm:text-5xl font-kanit font-bold text-white">4.9<span class="text-brand-cyan">★</span></p>
-          <p class="text-white/40 text-sm font-mono uppercase tracking-widest mt-2">Avis clients</p>
-        </div>
+  <!-- ═══════ STATS ═══════ -->
+  <section class="py-20 section-alt-5 section-divider">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+        {[
+          { value: '120+', label: 'Projets livrés' },
+          { value: '99%', label: 'Satisfaction client' },
+          { value: '3+', label: "Ans d'expérience" },
+          { value: '4.9★', label: 'Avis clients' },
+        ].map((stat) => (
+          <div class="text-center stats-box">
+            <p class="stat-value text-[clamp(1.8rem,5vw,3rem)] font-syne font-extrabold text-blue leading-none">{stat.value}</p>
+            <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-muted mt-3">{stat.label}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-24 bg-surface-alt relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-purple/5 via-transparent to-brand-cyan/5"></div>
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 section-fade">
-      <h2 class="text-3xl sm:text-5xl font-kanit font-bold text-white leading-[0.95] mb-6">
-        Envie de travailler <span class="gradient-text">ensemble</span> ?
+  <!-- ═══════ TEAM ═══════ -->
+  <section class="py-24 lg:py-32 section-alt section-divider">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-blue mb-4">L'Équipe</p>
+      <h2 class="font-syne font-extrabold text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-white mb-6 max-w-2xl">
+        Des talents <span class="text-sky">passionnés</span>
       </h2>
-      <p class="text-white/40 text-lg max-w-lg mx-auto mb-8">Racontes-nous ton projet et on construit la meilleure solution.</p>
-      <a href={base + "contact"} class="btn-primary">Contactez-nous →</a>
+      <p class="text-muted font-dm font-light text-sm max-w-lg mb-16">
+        Notre équipe multidisciplinaire combine créativité, technique et stratégie pour donner vie à vos projets.
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          { name: 'Yassine', role: 'Fondateur & Directeur Créatif', initials: 'Y', color: 'bg-blue/20 text-blue' },
+          { name: 'Sara', role: 'Cheffe de Projet', initials: 'S', color: 'bg-teal/20 text-teal' },
+          { name: 'Omar', role: 'Développeur Full-Stack', initials: 'O', color: 'bg-sky/20 text-sky' },
+          { name: 'Imane', role: 'Social Media Manager', initials: 'I', color: 'bg-white/10 text-white' },
+        ].map((member) => (
+          <div class="team-member group text-center">
+            <div class="w-full aspect-square rounded-full flex items-center justify-center mb-5 mx-auto max-w-[200px] transition-transform duration-500 group-hover:scale-105"
+                 class:list={[member.color]}>
+              <span class="font-syne font-extrabold text-[clamp(2.5rem,6vw,4rem)]">{member.initials}</span>
+            </div>
+            <h3 class="font-syne font-bold text-white text-base">{member.name}</h3>
+            <p class="text-muted text-xs font-mono uppercase tracking-[0.15em] mt-1.5">{member.role}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
+
+  <!-- ═══════ VALUES ═══════ -->
+  <section class="py-24 lg:py-32 section-alt-4 section-divider">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-blue mb-4">Nos Valeurs</p>
+      <h2 class="font-syne font-extrabold text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-white mb-16 max-w-2xl">
+        Ce qui nous <span class="text-sky">définit</span>
+      </h2>
+
+      <div class="grid sm:grid-cols-3 gap-10">
+        {[
+          { number: '01', title: 'Créativité', desc: "Chaque projet est unique. Nous sortons des sentiers battus pour créer des solutions qui marquent." },
+          { number: '02', title: 'Performance', desc: "Nous mesurons notre succès à l'impact que nous créons pour nos clients et leurs marques." },
+          { number: '03', title: 'Proximité', desc: "Basés à Marrakech, nous sommes à l'écoute de nos clients et construisons des relations durables." },
+        ].map((val, i) => (
+          <div class="process-step">
+            <span class="text-[40px] sm:text-[56px] font-syne font-extrabold text-blue/30 leading-none">{val.number}</span>
+            <h3 class="font-syne font-bold text-lg text-white mt-2 mb-3">{val.title}</h3>
+            <p class="text-muted font-dm font-light text-sm leading-relaxed">{val.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="py-24 lg:py-32 section-alt-8 section-divider">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12 text-center">
+      <p class="text-[11px] font-mono uppercase tracking-[0.2em] text-blue mb-4">Contact</p>
+      <h2 class="font-syne font-extrabold text-[clamp(2rem,6vw,4rem)] leading-[0.95] tracking-[-0.03em] text-white mb-6">
+        Envie de <span class="text-sky">travailler</span> ensemble ?
+      </h2>
+      <p class="text-muted font-dm font-light text-sm sm:text-base max-w-lg mx-auto mb-10">
+        Racontes-nous ton projet et on construit la meilleure solution.
+      </p>
+      <a href={base + "contact"} class="btn-primary">Démarrer un projet →</a>
+    </div>
+  </section>
+
 </Layout>
