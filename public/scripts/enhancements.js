@@ -175,8 +175,10 @@
 
   /* ─── TEAM AVATARS ───────────────────────── */
   function initTeamSection() {
-    const unsplashImgs = document.querySelectorAll('img[src*="unsplash"]');
-    if (!unsplashImgs.length) return;
+    // Only replace images that are INSIDE a team section
+    const teamImgs = document.querySelectorAll('.team-member img, .team-card img, [class*="team"] img');
+
+    if (!teamImgs.length) return;
 
     const teamData = {
       'Yassine': { letter: 'Y', cls: 'team-avatar-y' },
@@ -185,14 +187,14 @@
       'Imane':   { letter: 'I', cls: 'team-avatar-i' },
     };
 
-    unsplashImgs.forEach(img => {
-      const card = img.closest('[class*="team"], li, article, div');
+    teamImgs.forEach(img => {
+      const card = img.closest('.team-member, .team-card, [class*="team"] li, [class*="team"] > *');
+      if (!card) return;
+
       let memberName = null;
-      if (card) {
-        const nameEl = card.querySelector('h3, h4, strong, p, [class*="name"]');
-        if (nameEl) {
-          memberName = nameEl.textContent.trim().split(' ')[0];
-        }
+      const nameEl = card.querySelector('h3, h4, strong, p, [class*="name"]');
+      if (nameEl) {
+        memberName = nameEl.textContent.trim().split(' ')[0];
       }
 
       const data = teamData[memberName] || { letter: '?', cls: 'team-avatar-y' };
