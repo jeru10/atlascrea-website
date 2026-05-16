@@ -58,6 +58,17 @@
      ANIMATION 2 — 3D FLOAT on Hero
      ─────────────────────────────────────────────── */
   function initHeroFloat() {
+    // Remove old atlasHeroFloat from hero-mesh (legacy cleanup)
+    const oldMesh = document.querySelector('.hero-mesh');
+    if (oldMesh && oldMesh.style.animationName === 'atlasHeroFloat') {
+      oldMesh.style.animation = '';
+      oldMesh.style.transformOrigin = '';
+      oldMesh.style.willChange = '';
+    }
+    // Remove old injected keyframes style
+    const oldStyle = document.getElementById('atlas-hero-float-style');
+    if (oldStyle) oldStyle.remove();
+
     const heroBg = document.querySelector(
       '.hero-bg, .hero img, .hero-image, [class*="hero"] img, [class*="hero-bg"]'
     );
