@@ -1,0 +1,181 @@
+/* ═══════════ PRELOADER ═══════════ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #020E26;
+  transition: transform 0.8s var(--ease-out-expo), opacity 0.8s var(--ease-out-expo);
+}
+.preloader-slide-up {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.preloader-inner {
+  text-align: center;
+}
+.preloader-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.preloader-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3654E3, #2DA8E2);
+  animation: preloader-pulse 0.6s ease-in-out infinite alternate;
+}
+@keyframes preloader-pulse {
+  from { transform: scale(1); opacity: 1; }
+  to   { transform: scale(1.5); opacity: 0.6; }
+}
+.preloader-bar-track {
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin: 0 auto 16px;
+  overflow: hidden;
+}
+.preloader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1A1675 0%, #3654E3 45%, #2DA8E2 72%, #22D3C5 100%);
+  border-radius: 2px;
+  transition: width 0.05s linear;
+}
+.preloader-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.preloader-text {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: 'Figtree', monospace;
+}
+.preloader-percent {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Figtree', monospace;
+}
+
+/* ═══════════ CUSTOM CURSOR ═══════════ */
+body.cursor-loaded {
+  cursor: none;
+}
+#custom-cursor {
+  pointer-events: none;
+  z-index: 99999;
+  position: fixed;
+  inset: 0;
+}
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #3654E3;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+body.cursor-hover .cursor-dot {
+  width: 12px;
+  height: 12px;
+  background: #22D3C5;
+}
+body.cursor-hover .cursor-ring {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(34, 211, 197, 0.5);
+  background: rgba(34, 211, 197, 0.06);
+}
+body.cursor-view .cursor-ring {
+  width: 80px;
+  height: 80px;
+  border-color: #2DA8E2;
+  background: rgba(45, 168, 226, 0.08);
+}
+body.cursor-view .cursor-ring::after {
+  content: 'VIEW';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #2DA8E2;
+  font-family: 'Figtree', sans-serif;
+  font-weight: 600;
+}
+.cursor-dot,
+.cursor-ring {
+  will-change: transform;
+}
+
+/* ═══════════ MAGNETIC BUTTONS ═══════════ */
+.magnetic-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  will-change: transform;
+  transition: none;
+}
+.magnetic-btn:hover {
+  cursor: pointer;
+}
+
+/* ═══════════ HERO FLOATING ORB ═══════════ */
+#hero-orb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(54, 84, 227, 0.12) 0%, rgba(45, 168, 226, 0.06) 30%, transparent 70%);
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* ═══════════ HERO SHAPES (Parallax) ═══════════ */
+.hero-shape {
+  will-change: transform;
+  transition: none;
+}
+
+/* ═══════════ HERO REVEAL ANIMATION ═══════════ */
+.hero-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+}
+.hero-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
