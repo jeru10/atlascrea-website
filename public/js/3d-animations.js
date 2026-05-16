@@ -59,7 +59,7 @@
      ─────────────────────────────────────────────── */
   function initHeroFloat() {
     const heroBg = document.querySelector(
-      '.hero-bg, .hero img, .hero-image, [class*="hero"] img, [class*="hero-bg"], .hero-mesh'
+      '.hero-bg, .hero img, .hero-image, [class*="hero"] img, [class*="hero-bg"]'
     );
     if (!heroBg) return;
 
@@ -90,7 +90,7 @@
      ─────────────────────────────────────────────── */
   function initParallaxScroll() {
     const parallaxItems = [
-      { selector: '.hero-bg, .hero img, .hero-mesh', speed: 0.35 },
+      { selector: '.hero-bg, .hero img', speed: 0.35 },
       { selector: '.portfolio-item img, .portfolio-card img', speed: 0.12 },
       { selector: '.team-card img, .team img, .team-member', speed: 0.10 },
     ];
