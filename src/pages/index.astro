@@ -2,462 +2,410 @@
 import Layout from '../layouts/Layout.astro';
 const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
 
-const serviceCategories = [
-  { number: '0', label: 'Identité', title: 'Branding & Identité Visuelle', items: ['Stratégie de marque', 'Logo & charte graphique', 'Guide de marque complet', 'Packaging & papeterie'] },
-  { number: '1', label: 'Digital', title: 'Sites Web & Landing Pages', items: ['Sites vitrines & e-commerce', 'Landing pages optimisées', 'SEO & performance', 'WordPress / Sur mesure'] },
-  { number: '2', label: 'Social', title: 'Social Media & Contenu', items: ['Gestion Instagram / Facebook', 'Création de posts & reels', 'Stratégie de contenu', 'Community management'] },
-  { number: '3', label: 'Ads', title: 'Publicité Digitale', items: ['Meta Ads (Instagram/Facebook)', 'Google Ads', 'Tracking & optimisation', 'Reporting mensuel'] },
-  { number: '4', label: 'Motion', title: 'Vidéo & Motion Design', items: ['Reels & stories animées', 'Spots publicitaires', 'Motion design', 'Montage vidéo'] },
-  { number: '5', label: 'Print', title: 'Design & Impression', items: ['Flyers & brochures', 'Panneaux & enseignes', 'Cartes de visite', 'Roll-ups & kakemonos'] },
+const services = [
+  { index: '/01', name: 'Branding & Identité Visuelle', cat: 'Identité', desc: 'Stratégie de marque, logo, charte graphique, packaging' },
+  { index: '/02', name: 'Sites Web & Landing Pages', cat: 'Digital', desc: 'Sites vitrines, e-commerce, landing pages optimisées' },
+  { index: '/03', name: 'Social Media & Contenu', cat: 'Social', desc: 'Gestion Instagram/Facebook, création de posts & reels' },
+  { index: '/04', name: 'Publicité Digitale', cat: 'Ads', desc: 'Meta Ads, Google Ads, tracking & optimisation' },
+  { index: '/05', name: 'Vidéo & Motion Design', cat: 'Motion', desc: 'Reels, spots publicitaires, motion design' },
+  { index: '/06', name: 'Design & Impression', cat: 'Print', desc: 'Flyers, brochures, panneaux, cartes de visite' },
 ];
 
-const portfolioWebsites = [
-  { name: "Munich Recruitment", url: "https://www.munichrecruitment.com", cat: "Recrutement", tech: "React · TypeScript · Tailwind", image: "images/portfolio/munich-recruitment.jpg" },
-  { name: "Abdol Luxury Tour", url: "https://abdoluxurytour.com", cat: "Tourisme", tech: "Webflow · JS · Custom CMS", image: "images/portfolio/abdoluxurytour.jpg" },
-  { name: "Mondrap", url: "https://mondrap.com", cat: "Mode", tech: "Shopify · Liquid · Alpine", image: "images/portfolio/mondrap.jpg" },
-  { name: "Potentiel Consulting", url: "https://www.potentielconsulting.ma", cat: "Conseil", tech: "WordPress · Elementor · PHP", image: "images/portfolio/potentiel-consulting.jpg" },
-  { name: "Atlas Epic Trek", url: "https://atlasepictrek.com", cat: "Aventure", tech: "Next.js · Tailwind · Vercel", image: "images/portfolio/atlasepictrek.jpg" },
-  { name: "Charpente Maroc", url: "https://charpente-maroc.com", cat: "Construction", tech: "WordPress · Custom Theme", image: "images/portfolio/charpente-maroc.jpg" },
+const portfolioItems = [
+  { name: 'Munich Recruitment', cat: 'Recrutement', tags: ['React', 'TypeScript', 'Tailwind'], image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80', url: 'https://www.munichrecruitment.com' },
+  { name: 'Abdol Luxury Tour', cat: 'Tourisme', tags: ['Webflow', 'JS', 'Custom CMS'], image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80', url: 'https://abdoluxurytour.com' },
+  { name: 'Mondrap', cat: 'Mode', tags: ['Shopify', 'Liquid', 'Alpine'], image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80', url: 'https://mondrap.com' },
+  { name: 'Potentiel Consulting', cat: 'Conseil', tags: ['WordPress', 'Elementor', 'PHP'], image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80', url: 'https://www.potentielconsulting.ma' },
+  { name: 'Atlas Epic Trek', cat: 'Aventure', tags: ['Next.js', 'Tailwind', 'Vercel'], image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80', url: 'https://atlasepictrek.com' },
+  { name: 'Charpente Maroc', cat: 'Construction', tags: ['WordPress', 'Custom Theme'], image: 'https://images.unsplash.com/photo-1541888946425-d81bb6f0aa76?w=800&q=80', url: 'https://charpente-maroc.com' },
 ];
 
 const processSteps = [
-  { number: '01', title: 'Découverte', desc: "On écoute votre business, vos objectifs et votre vision. Appel ou DM — simple et rapide." },
-  { number: '02', title: 'Stratégie', desc: "On construit un plan créatif adapté à votre marché et votre budget." },
-  { number: '03', title: 'Création', desc: "Notre équipe produit vos livrables avec attention aux détails et à la qualité." },
-  { number: '04', title: 'Lancement', desc: "On déploie, on publie, on lance — et on reste disponibles pour le suivi." },
+  { number: '01', title: 'Découverte', desc: 'On écoute votre business, vos objectifs et votre vision.' },
+  { number: '02', title: 'Stratégie', desc: 'On construit un plan créatif adapté à votre marché.' },
+  { number: '03', title: 'Création', desc: 'Notre équipe produit vos livrables avec attention aux détails.' },
+  { number: '04', title: 'Lancement', desc: 'On déploie, on publie, on lance — et on reste disponibles.' },
 ];
 
 const teamMembers = [
-  { name: 'Yassine', role: 'Fondateur & Directeur Créatif', kpi: '120+', kpiLabel: 'Projets', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80' },
-  { name: 'Sara', role: 'Cheffe de Projet', kpi: '97%', kpiLabel: 'Satisfaction', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80' },
-  { name: 'Omar', role: 'Designer UI/UX', kpi: '89%', kpiLabel: 'Rétention', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' },
-  { name: 'Imane', role: 'Social Media Manager', kpi: '3.4x', kpiLabel: 'Engagement', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80' },
-];
-
-const faqs = [
-  { q: 'Combien de temps faut-il pour créer un site web ?', r: "En moyenne 2 à 4 semaines selon la complexité du projet. On établit un calendrier précis dès le départ." },
-  { q: 'Quels sont vos délais de réponse ?', r: "On répond sous 24h maximum. Généralement dans l'heure pour les appels." },
-  { q: 'Proposez-vous un suivi après livraison ?', r: "Oui, un mois de suivi gratuit est inclus dans toutes nos formules. On reste disponibles pour les ajustements." },
-  { q: 'Comment se déroule la collaboration ?', r: "Appel découverte → Proposition → Validation → Création → Livraison. Le tout en transparence totale." },
+  { name: 'Yassine', role: 'Fondateur & Directeur Créatif', kpi: '120+', kpiLabel: 'PROJETS', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80' },
+  { name: 'Sara', role: 'Cheffe de Projet', kpi: '97%', kpiLabel: 'SATISFACTION', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80' },
+  { name: 'Omar', role: 'Designer UI/UX', kpi: '89%', kpiLabel: 'RÉTENTION', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80' },
+  { name: 'Imane', role: 'Social Media Manager', kpi: '3.4x', kpiLabel: 'ENGAGEMENT', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80' },
 ];
 
 const testimonials = [
-  { quote: "ATLAS CREA a transformé notre image de marque. Leur approche créative et professionnelle a dépassé nos attentes.", name: "Sara El Amrani", role: "Fondatrice, Potentiel Consulting", stars: 5 },
-  { quote: "Un travail remarquable sur notre site web. L'équipe est à l'écoute, réactive et livre toujours dans les délais.", name: "Karim Benali", role: "CEO, Munich Recruitment", stars: 5 },
-  { quote: "Depuis qu'on travaille avec ATLAS CREA, notre présence sur les réseaux sociaux a explosé.", name: "Amina Tazi", role: "Directrice Marketing, Mondrap", stars: 5 },
+  { text: "Une équipe créative et professionnelle. Notre site a été livré dans les délais et dépasse nos attentes.", name: "Karim B.", company: "Munich Recruitment" },
+  { text: "ATLAS CREA a transformé notre présence digitale. Résultats mesurables en moins de 3 mois.", name: "Sofia E.", company: "Potentiel Consulting" },
+  { text: "Leur approche stratégique nous a aidés à clarifier notre message. Un vrai partenariat.", name: "Younes A.", company: "Atlas Epic Trek" },
+];
+
+const faqs = [
+  { q: 'Combien de temps pour créer un site web ?', a: 'En moyenne 2 à 4 semaines — de la stratégie au déploiement. Nous travaillons en cycles agiles pour des résultats rapides.' },
+  { q: 'Quels sont vos délais de réponse ?', a: 'Sous 24h maximum. Nous privilégions une communication fluide et réactive avec nos clients.' },
+  { q: 'Proposez-vous des abonnements mensuels ?', a: 'Oui, après la phase de création nous proposons des formules de maintenance et de gestion continue.' },
+  { q: 'Quels sont vos tarifs ?', a: 'Nos projets débutent à 5 000 DH pour un site vitrine. Contactez-nous pour un devis personnalisé.' },
+  { q: 'Travaillez-vous avec des clients hors Maroc ?', a: 'Absolument. Nous collaborons à distance avec des clients en Europe, Afrique et Moyen-Orient.' },
 ];
 ---
 
-<Layout title="ATLAS CREA — Branding · Stratégie · Croissance" description="Studio créatif à Marrakech spécialisé dans le branding, le social media, les sites web, la publicité et le design.">
-  <div class="noise-overlay"></div>
+<Layout title="ATLAS CREA — Studio Créatif à Marrakech" description="ATLAS CREA, agence de communication 360° à Marrakech. Branding, sites web, social media, SEO, publicité, print.">
 
-  <main>
-    <!-- ═══════════ HERO ═══════════ -->
-    <section class="relative min-h-screen flex flex-col justify-center overflow-hidden bg-brand-navy" id="hero-section">
-      <!-- Animated gradient background + grain -->
-      <div class="absolute inset-0 z-0">
-        <!-- Base navy overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/60 via-brand-navy/80 to-brand-navy"></div>
-        <!-- Moving gradient orbs -->
-        <div class="absolute inset-0 bg-gradient-to-br from-[#020E26] via-[#0a1848] to-[#020E26] animate-hero-gradient opacity-40" style="background-size: 400% 400%;"></div>
-        <div class="absolute top-0 right-0 w-[800px] h-[800px] rounded-full bg-[#3654E3]/15 blur-[150px] animate-hero-orb-1"></div>
-        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-[#22D3C5]/10 blur-[120px] animate-hero-orb-2"></div>
-        <div class="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-[#2DA8E2]/8 blur-[100px] animate-hero-orb-3"></div>
-        <!-- Grain overlay -->
-        <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E&quot;);"></div>
-      </div>
-      <!-- 3D Canvas -->
-      <div id="hero-3d" class="absolute inset-0 z-0"></div>
-      
-      <!-- Floating Orb (mouse follower) -->
-      <div id="hero-orb" class="z-[1]"></div>
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section id="hero" class="relative min-h-screen flex flex-col justify-center overflow-hidden bg-bg">
+    <!-- Background layers -->
+    <div class="hero-mesh"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-scanlines"></div>
+    <div class="hero-glow"></div>
 
-      <!-- Geometric Shapes with mouse parallax -->
-      <div class="hero-shape absolute top-[15%] left-[8%] w-16 h-16 border border-white/10 rotate-45 hidden sm:block z-[1]" data-speed="2"></div>
-      <div class="hero-shape absolute top-[60%] left-[12%] w-3 h-3 bg-brand-cyan/40 rotate-12 hidden md:block z-[1]" data-speed="4"></div>
-      <div class="hero-shape absolute top-[25%] right-[10%] w-24 h-24 border border-brand-purple/20 rounded-full hidden sm:block z-[1]" data-speed="1.5"></div>
-      <div class="hero-shape absolute bottom-[30%] right-[18%] w-5 h-5 bg-white/10 hidden md:block z-[1]" data-speed="3"></div>
-      <div class="hero-shape absolute bottom-[15%] right-[5%] w-12 h-12 border border-brand-cyan/20 rotate-12 hidden lg:block z-[1]" data-speed="2.5"></div>
-
-      <div class="absolute inset-0 z-[1] pointer-events-none">
-        <div class="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-navy/80 to-brand-navy scale-110"></div>
-      </div>
-      <div class="absolute inset-0 overflow-hidden pointer-events-none z-[1] opacity-[0.04]">
-        {[1,2,3,4,5,6,7].map((_, i) => (
-          <div class="absolute left-0 right-0 h-px bg-white" style={{ top: `${12.5 * (i + 1)}%` }}></div>
-        ))}
-      </div>
-      <div class="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
-        {[1,2,3,4,5,6,7].map((_, i) => (
-          <div class="absolute left-0 right-0 h-px bg-white/5" style={{ top: `${12.5 * (i + 1)}%` }}></div>
-        ))}
-      </div>
-
-      <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 flex-1 flex items-center">
-        <div class="w-full">
-          <!-- Top row: branding + clock -->
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-16 hero-reveal" style="animation-delay: 0s">
-            <div class="flex items-center gap-4">
-              <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
-              <span class="text-xs font-mono uppercase tracking-[0.2em] text-white/30">ATLAS CREA / MARRAKECH</span>
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-32 md:py-40 flex-1 flex items-center">
+      <div class="w-full">
+        <!-- Top row: tag + clock -->
+        <div class="hero-reveal" data-delay="0.8">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
+            <div class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-teal"></span>
+              <span class="text-[11px] font-mono uppercase tracking-[0.2em] text-muted">ATLAS CREA / MARRAKECH</span>
             </div>
-            <div class="flex items-center gap-3 text-white/30 font-mono text-xs tracking-wider" id="live-clock-hero">
-              <span>NOTRE TEMPS</span>
-              <span class="text-white/50 text-sm" id="clock-display">--:--:--</span>
-              <span class="text-white/20">UTC+1 MARRAKECH</span>
-            </div>
-          </div>
-
-          <!-- Main heading -->
-          <div class="max-w-5xl mb-10">
-            <h1 class="text-[clamp(3rem,10vw,6.5rem)] font-kanit font-bold leading-[0.88] tracking-tighter text-white">
-              <span class="block overflow-hidden"><span class="block hero-reveal" style="animation-delay: 0.1s">Des identités</span></span>
-              <span class="block overflow-hidden"><span class="block hero-reveal gradient-text" style="animation-delay: 0.25s">digitales</span></span>
-              <span class="block overflow-hidden"><span class="block hero-reveal" style="animation-delay: 0.4s">qui marquent.</span></span>
-            </h1>
-            <p class="text-white/40 text-lg sm:text-xl max-w-2xl mt-6 hero-reveal" style="animation-delay: 0.55s">
-              Branding · Sites Web · Social Media · SEO · Publicité · Print
-            </p>
-          </div>
-
-          <!-- Service chips (like template's badges) -->
-          <div class="flex flex-wrap gap-3 mb-12 hero-reveal" style="animation-delay: 0.7s">
-            {['Branding', 'Web Design', 'Social Media', 'Publicité', 'Motion', 'Print'].map((s) => (
-              <span class="px-4 py-2 rounded-full border border-white/10 text-xs font-mono tracking-wider text-white/40 hover:border-brand-cyan/30 hover:text-brand-cyan transition-all">
-                {s}
-              </span>
-            ))}
-          </div>
-
-          <!-- CTAs -->
-          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 hero-reveal" style="animation-delay: 0.85s">
-            <a href={base + "portfolio"} class="btn-primary magnetic-btn">
-              Voir nos réalisations →
-            </a>
-            <a href={base + "contact"} class="btn-outline magnetic-btn">
-              Démarrer un projet
-            </a>
-          </div>
-
-          <!-- Stats row -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-16 pt-12 border-t border-white/5 hero-reveal" style="animation-delay: 1s">
-            {[['120+', 'Projets livrés'], ['99%', 'Satisfaction client'], ['3+', 'Ans d\'expérience'], ['4.9★', 'Avis clients']].map(([num, label]) => (
-              <div>
-                <p class="text-3xl sm:text-4xl font-kanit font-bold text-white">{num}</p>
-                <p class="text-xs text-white/30 font-mono tracking-widest mt-1 uppercase">{label}</p>
-              </div>
-            ))}
+            <span class="text-[11px] font-mono tracking-wider text-muted" id="live-clock">--:--:-- UTC+1 MARRAKECH</span>
           </div>
         </div>
-      </div>
 
-      <!-- Side decorators -->
-      <div class="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-10">
-        <div class="side-decorator-line"></div>
-        <span class="side-decorator" style="padding-top:12px;">SCROLL</span>
-      </div>
-      <div class="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-10">
-        <span class="side-decorator" style="padding-bottom:12px;">MARRAKECH</span>
-        <div class="side-decorator-line"></div>
-      </div>
-    </section>
+        <!-- Section label -->
+        <div class="hero-reveal" data-delay="0.9">
+          <span class="text-[11px] font-mono tracking-[0.25em] text-teal mb-4 block">// 00.01°</span>
+        </div>
 
-    <!-- ═══════════ ABOUT / STUDIO [01] ═══════════ -->
-    <section class="py-28 md:py-36 bg-surface-alt relative overflow-hidden"> <!-- STUDIO -->
-            <h2 class="section-title text-[clamp(2rem,6vw,4rem)] mb-8">
-              Une vision distincte à chaque projet, fusionnant <span class="gradient-text">stratégie + créativité</span>.
-            </h2>
-          </div>
-          <div class="section-fade space-y-6">
-            <p class="text-white/50 text-lg leading-relaxed">
-              Studio basé à Marrakech. Nous construisons des identités digitales où la stratégie rencontre l'expression — fusionnant créativité et intention pour des résultats concrets.
-            </p>
-            <p class="text-white/30 leading-relaxed">
-              Avec plus de 120 projets livrés et 3 ans d'expérience, nous accompagnons les marques ambitieuses dans leur transformation digitale.
-            </p>
-            <a href={base + "about"} class="inline-flex items-center gap-2 text-brand-cyan hover:text-white transition-colors text-sm font-mono uppercase tracking-widest group mt-8">
-              En savoir plus
-              <span class="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
+        <!-- H1: Word-by-word reveal -->
+        <h1 class="font-syne font-extrabold text-[clamp(3.5rem,9vw,7rem)] leading-[0.9] tracking-[-0.03em] text-white max-w-6xl mb-6">
+          <span class="word-reveal" data-delay="1.0"><span>Des</span></span>{' '}
+          <span class="word-reveal" data-delay="1.06"><span>identités</span></span>{' '}
+          <span class="word-reveal text-teal italic" data-delay="1.12"><span>digitales</span></span>{' '}
+          <span class="word-reveal" data-delay="1.18"><span>qui</span></span>{' '}
+          <span class="word-reveal" data-delay="1.24"><span>marquent.</span></span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-reveal text-muted text-sm sm:text-base font-dm font-light max-w-2xl mb-10" data-delay="1.4">
+          Branding · Sites Web · Social Media · SEO · Publicité · Print
+        </p>
+
+        <!-- Buttons -->
+        <div class="hero-reveal flex flex-col sm:flex-row items-start sm:items-center gap-4" data-delay="1.6">
+          <a href={base + "portfolio"} class="btn-primary">Voir nos réalisations →</a>
+          <a href={base + "contact"} class="btn-outline">Démarrer un projet</a>
         </div>
       </div>
+    </div>
 
-      <!-- Side decorators -->
-      <div class="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-10">
-        <div class="side-decorator-line"></div>
-        <span class="side-decorator" style="padding-top:12px;">SCROLL</span>
-      </div>
-      <div class="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-10">
-        <span class="side-decorator" style="padding-bottom:12px;">MARRAKECH</span>
-        <div class="side-decorator-line"></div>
-      </div>
-    </section>
+    <!-- Scroll indicator -->
+    <div class="absolute right-8 bottom-8 hidden lg:flex flex-col items-center gap-3 z-10">
+      <span class="text-[10px] font-mono tracking-[0.2em] text-muted vertical-rl" style="writing-mode: vertical-rl;">SCROLL</span>
+      <div class="w-px h-16 bg-gradient-to-b from-muted to-transparent"></div>
+    </div>
+  </section>
 
-    <!-- ═══════════ SERVICES [02] ═══════════ (Template-style horizontal) -->
-    <section class="py-28 md:py-36 bg-surface-alt relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="section-fade mb-20">
-          <div class="section-label">02 / PRESTATIONS</div>
-          <h2 class="section-title max-w-3xl">
-            Des solutions qui <span class="gradient-text">comptent.</span>
+  <!-- ═══════════════════ MARQUEE ROW 1 ═══════════════════ -->
+  <div class="marquee py-3" style="background: #3654E3;">
+    <div class="marquee-inner text-[11px] font-syne font-bold uppercase tracking-[0.2em]" style="color: #020E26;">
+      <span>Branding</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Sites Web</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Social Media</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>SEO</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Motion Design</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Publicité</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Print</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <!-- Duplicate for seamless loop -->
+      <span>Branding</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Sites Web</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Social Media</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>SEO</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Motion Design</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Publicité</span><span class="marquee-dot" style="background:#020E26;"></span>
+      <span>Print</span><span class="marquee-dot" style="background:#020E26;"></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MARQUEE ROW 2 ═══════════════════ -->
+  <div class="marquee py-3" style="background: rgba(240,238,232,0.03);">
+    <div class="marquee-inner marquee-inner-right text-[11px] font-mono tracking-wider" style="color: rgba(240,238,232,0.45);">
+      <span>Marrakech</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <span>120+ Projets Livrés</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <span>99% Satisfaction</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <span>3+ Ans</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <span>4.9★ Avis Clients</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <!-- Duplicate -->
+      <span>Marrakech</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <span>120+ Projets Livrés</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <span>99% Satisfaction</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <span>3+ Ans</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+      <span>4.9★ Avis Clients</span><span class="marquee-dot" style="background:rgba(240,238,232,0.45);"></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ STUDIO SECTION ═══════════════════ -->
+  <section class="py-28 md:py-36 bg-bg relative overflow-hidden border-t border-border">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="section-label scroll-fade">01 / STUDIO CRÉATIF</div>
+      <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-start mt-8">
+        <div class="md:col-span-3 scroll-fade-left">
+          <h2 class="section-title text-[clamp(2.5rem,5vw,4rem)] max-w-3xl">
+            Une vision distincte<br />
+            <span class="relative inline-block">à chaque projet.
+              <span class="absolute -bottom-2 left-0 right-0 h-px bg-teal"></span>
+            </span>
           </h2>
         </div>
-
-        <div class="space-y-px">
-          {serviceCategories.map((cat, i) => (
-            <div class="service-category-row group section-fade border-t border-white/5 py-8 md:py-10" style={{ transitionDelay: `${i * 0.08}s` }}>
-              <div class="grid md:grid-cols-12 gap-6 md:gap-10 items-start">
-                {/* Number */}
-                <div class="md:col-span-1 flex md:block items-center gap-3">
-                  <span class="text-sm font-mono text-white/20">/{cat.number}</span>
-                  <span class="md:hidden w-1 h-1 rounded-full bg-brand-cyan/50"></span>
-                </div>
-                {/* Category */}
-                <div class="md:col-span-3">
-                  <span class="text-xs font-mono uppercase tracking-widest text-brand-cyan">{cat.label}</span>
-                  <h3 class="text-xl md:text-2xl font-kanit font-bold text-white mt-2">{cat.title}</h3>
-                </div>
-                {/* Items */}
-                <div class="md:col-span-5">
-                  <ul class="space-y-2 md:space-y-3">
-                    {cat.items.map((item) => (
-                      <li class="flex items-center gap-3 text-sm md:text-base text-white/50 hover:text-white/70 transition-colors">
-                        <span class="w-1.5 h-0.5 bg-brand-cyan/60"></span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {/* Arrow */}
-                <div class="md:col-span-3 flex md:justify-end">
-                  <span class="text-white/10 group-hover:text-brand-cyan/40 transition-colors text-lg">→</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ WORK / PORTFOLIO [03] ═══════════ -->
-    <section class="py-28 md:py-36 bg-surface-alt relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="section-fade mb-16 md:mb-20">
-          <div class="section-label">03 / RÉALISATIONS</div>
-          <h2 class="section-title max-w-3xl">
-            Des créations qui <span class="gradient-text">marquent.</span>
-          </h2>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
-          {portfolioWebsites.map((project, i) => (
-            <a href={project.url} target="_blank" rel="noopener noreferrer" class="work-card group block">
-              <div class="aspect-[4/3] overflow-hidden relative">
-                <img src={project.image} alt={project.name} class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
-                  <div class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                  </div>
-                </div>
-                <div class="absolute top-3 left-3 z-10">
-                  <span class="px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-[10px] font-mono uppercase tracking-widest text-white">{project.cat}</span>
-                </div>
-              </div>
-              <div class="p-5">
-                <div class="flex items-center justify-between mb-2">
-                  <h3 class="text-sm font-kanit font-bold text-white group-hover:text-brand-cyan transition-colors">{project.name}</h3>
-                  <span class="text-white/10 text-xs font-mono">2025</span>
-                </div>
-                <p class="text-[10px] font-mono text-white/20 tracking-wider uppercase">{project.tech}</p>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        <div class="text-center mt-12 section-fade">
-          <a href={base + "portfolio"} class="btn-outline">Voir tous les projets →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ PROCESS [04] ═══════════ -->
-    <section class="py-28 md:py-36 bg-surface-alt relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="section-fade mb-16 md:mb-20">
-          <div class="section-label">04 / NOTRE PROCESSUS</div>
-          <h2 class="section-title max-w-4xl">
-            Du concept à la <span class="gradient-text">réalité.</span>
-          </h2>
-        </div>
-
-        <div class="relative">
-          {processSteps.map((step, index) => (
-            <div class="sticky top-32 min-h-[35vh] mb-6 last:mb-0" style={{ zIndex: index + 1 }}>
-              <div class="process-card relative h-full section-fade">
-                <div class="process-accent-line"></div>
-                <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
-                  <div class="flex-shrink-0">
-                    <span class="text-6xl md:text-8xl font-kanit font-bold text-white/5 leading-none">//{step.number}</span>
-                  </div>
-                  <div class="flex-1 pt-2">
-                    <h3 class="text-2xl md:text-3xl font-kanit font-bold text-white mb-4">{step.title}</h3>
-                    <p class="text-white/50 text-lg max-w-xl leading-relaxed">{step.desc}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ TEAM [05] ═══════════ -->
-    <section class="py-28 md:py-36 bg-brand-navy relative overflow-hidden">
-      <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-cyan/5 blur-[100px] rounded-full"></div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="section-fade mb-16 md:mb-20">
-          <div class="section-label">05 / L'ÉQUIPE</div>
-          <h2 class="section-title max-w-3xl">
-            Pas de visages sérieux.<br>Un vrai <span class="gradient-text">travail sérieux.</span>
-          </h2>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
-          {teamMembers.map((member, i) => (
-            <div class="group section-fade" style={{ transitionDelay: `${i * 0.1}s` }}>
-              <div class="aspect-square rounded-2xl bg-brand-navy border border-white/5 mb-5 overflow-hidden relative">
-                <img src={member.image} alt={member.name} class="w-full h-full object-cover" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/40 to-transparent"></div>
-              </div>
-              <div class="flex items-end justify-between gap-4">
-                <div>
-                  <p class="text-sm font-kanit font-bold text-white">{member.name}</p>
-                  <p class="text-xs text-white/30 mt-1">{member.role}</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-xl font-kanit font-bold gradient-text">{member.kpi}</p>
-                  <p class="text-[10px] font-mono text-white/20 uppercase tracking-wider">{member.kpiLabel}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ FAQ ═══════════ -->
-    <section class="py-28 md:py-36 bg-brand-navy border-t border-white/5 relative">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="section-fade mb-16 md:mb-20 text-center">
-          <div class="section-label justify-center">FAQ</div>
-          <h2 class="section-title max-w-2xl mx-auto">
-            Des doutes ? Des <span class="gradient-text">réponses.</span>
-          </h2>
-        </div>
-
-        <div class="space-y-4 stagger-children">
-          {faqs.map((faq, i) => (
-            <div class="faq-item border-b border-white/5 pb-4 section-fade" style={{ transitionDelay: `${i * 0.1}s` }}>
-              <button class="faq-toggle w-full flex items-center justify-between py-3 text-left" data-target={`faq-${i}`}>
-                <span class="text-sm md:text-base text-white/70 group-hover:text-white transition-colors">{faq.q}</span>
-                <span class="text-brand-cyan text-sm font-mono ml-4 plus-sign">+</span>
-              </button>
-              <div id={`faq-${i}`} class="faq-answer hidden">
-                <p class="text-white/40 text-sm leading-relaxed pb-4">{faq.r}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ TESTIMONIALS [06] ═══════════ -->
-    <section class="py-28 md:py-36 bg-brand-navy relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="section-fade mb-16 md:mb-20">
-          <div class="section-label">06 / TÉMOIGNAGES</div>
-          <h2 class="section-title max-w-3xl">
-            Ce qu'ils disent <span class="gradient-text">de nous.</span>
-          </h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6 stagger-children">
-          {testimonials.map((t, i) => (
-            <div class="testimonial-card section-fade" style={{ transitionDelay: `${i * 0.1}s` }}>
-              <div class="flex gap-1 mb-6">
-                {[...Array(t.stars)].map(() => (
-                  <svg class="w-4 h-4 text-brand-cyan" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                ))}
-              </div>
-              <p class="text-white/70 text-sm leading-relaxed mb-8 italic">"{t.quote}"</p>
-              <div class="mt-auto">
-                <p class="text-white font-semibold text-sm">{t.name}</p>
-                <p class="text-white/30 text-xs mt-1">{t.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ CTA ═══════════ -->
-    <section class="py-28 md:py-36 bg-brand-navy relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-brand-purple/5 via-transparent to-brand-cyan/5"></div>
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div class="section-fade">
-          <h2 class="text-4xl sm:text-5xl md:text-7xl font-kanit font-bold text-white leading-[0.95] mb-8">
-            Prêt à créer quelque chose<br>de <span class="gradient-text">grand</span> ?
-          </h2>
-          <p class="text-white/40 text-lg max-w-lg mx-auto mb-10">
-            Discutons de votre projet et trouvons ensemble la meilleure solution pour votre marque.
+        <div class="md:col-span-2 scroll-fade-right">
+          <p class="text-muted text-base leading-relaxed mb-8 font-dm font-light">
+            Studio basé à Marrakech. Nous construisons des identités digitales où la stratégie rencontre l'expression créative. Chaque projet est unique, chaque solution sur mesure.
           </p>
-          <a href={base + "contact"} class="btn-primary text-base !px-12 !py-5">
-            C'est parti ! →
+          <a href={base + "about"} class="inline-flex items-center gap-2 text-[11px] font-syne font-bold tracking-[0.15em] uppercase text-white hover:text-teal transition-colors">
+            En savoir plus →
           </a>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="mt-20 h-px w-full bg-border"></div>
+    </div>
+  </section>
 
-  <!-- Live Clock Script -->
+  <!-- ═══════════════════ SERVICES ═══════════════════ -->
+  <section class="py-28 md:py-36 bg-bg relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(54,84,227,0.06) 0%, transparent 60%);"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div class="scroll-fade mb-16">
+        <div class="section-label">02 / PRESTATIONS</div>
+        <h2 class="section-title text-[clamp(2rem,4vw,3rem)] max-w-3xl">Des solutions qui comptent.</h2>
+      </div>
+
+      <div class="stagger-reveal">
+        {services.map((s, i) => (
+          <div class="service-row scroll-fade" style={{ transitionDelay: `${i * 0}s` }}>
+            <span class="service-index">{s.index}</span>
+            <span class="service-name">{s.name}</span>
+            <span class="service-cat hidden sm:block">{s.cat}</span>
+            <span class="service-arrow">→</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PORTFOLIO ═══════════════════ -->
+  <section class="py-28 md:py-36 bg-surface-alt relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="scroll-fade mb-16">
+        <div class="section-label">03 / RÉALISATIONS</div>
+        <h2 class="section-title text-[clamp(2rem,4vw,3rem)] max-w-3xl">Des créations qui marquent.</h2>
+      </div>
+
+      <!-- Asymmetric grid -->
+      <div class="stagger-reveal grid grid-cols-1 md:grid-cols-12 gap-4">
+        <!-- Row 1: Large + Small -->
+        {[0, 1].map((idx) => (
+          <a href={portfolioItems[idx].url} target="_blank" rel="noopener" class={`portfolio-card scroll-scale ${idx === 0 ? 'md:col-span-7' : 'md:col-span-5'}`}>
+            <img src={portfolioItems[idx].image} alt={portfolioItems[idx].name} />
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-syne font-bold text-sm text-white">{portfolioItems[idx].name}</span>
+                <span class="text-[10px] font-mono text-muted px-2 py-0.5 border border-border rounded">{portfolioItems[idx].cat}</span>
+              </div>
+              <div class="flex items-center gap-2 mt-3">
+                {portfolioItems[idx].tags.map((t) => (
+                  <span class="text-[9px] font-mono uppercase tracking-wider text-muted bg-white/5 px-2 py-1">{t}</span>
+                ))}
+                <span class="ml-auto text-xs text-muted">→</span>
+              </div>
+            </div>
+          </a>
+        ))}
+        <!-- Row 2: Small + Large -->
+        {[2, 3].map((idx) => (
+          <a href={portfolioItems[idx].url} target="_blank" rel="noopener" class={`portfolio-card scroll-scale ${idx === 2 ? 'md:col-span-5' : 'md:col-span-7'}`}>
+            <img src={portfolioItems[idx].image} alt={portfolioItems[idx].name} />
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-syne font-bold text-sm text-white">{portfolioItems[idx].name}</span>
+                <span class="text-[10px] font-mono text-muted px-2 py-0.5 border border-border rounded">{portfolioItems[idx].cat}</span>
+              </div>
+              <div class="flex items-center gap-2 mt-3">
+                {portfolioItems[idx].tags.map((t) => (
+                  <span class="text-[9px] font-mono uppercase tracking-wider text-muted bg-white/5 px-2 py-1">{t}</span>
+                ))}
+                <span class="ml-auto text-xs text-muted">→</span>
+              </div>
+            </div>
+          </a>
+        ))}
+        <!-- Row 3: Equal -->
+        {[4, 5].map((idx) => (
+          <a href={portfolioItems[idx].url} target="_blank" rel="noopener" class={`portfolio-card scroll-scale md:col-span-6`}>
+            <img src={portfolioItems[idx].image} alt={portfolioItems[idx].name} />
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-syne font-bold text-sm text-white">{portfolioItems[idx].name}</span>
+                <span class="text-[10px] font-mono text-muted px-2 py-0.5 border border-border rounded">{portfolioItems[idx].cat}</span>
+              </div>
+              <div class="flex items-center gap-2 mt-3">
+                {portfolioItems[idx].tags.map((t) => (
+                  <span class="text-[9px] font-mono uppercase tracking-wider text-muted bg-white/5 px-2 py-1">{t}</span>
+                ))}
+                <span class="ml-auto text-xs text-muted">→</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROCESS ═══════════════════ -->
+  <section class="py-28 md:py-36 bg-bg relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="scroll-fade mb-16">
+        <div class="section-label">04 / NOTRE PROCESSUS</div>
+        <h2 class="section-title text-[clamp(2rem,4vw,3rem)] max-w-3xl">Du concept à la réalité.</h2>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6 stagger-reveal">
+        {processSteps.map((step) => (
+          <div class="process-step scroll-fade">
+            <div class="process-number">//{step.number}</div>
+            <h3 class="font-syne font-bold text-lg text-white mb-3">{step.title}</h3>
+            <p class="text-muted text-sm font-dm font-light leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ STATS ═══════════════════ -->
+  <section class="py-28 md:py-36 relative overflow-hidden" style="background: radial-gradient(ellipse 70% 50% at 20% 50%, rgba(26,22,117,0.5) 0%, transparent 60%), radial-gradient(ellipse 40% 60% at 80% 30%, rgba(54,84,227,0.2) 0%, transparent 50%), #020E26;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="scroll-fade mb-16">
+        <div class="section-label">// PERFORMANCE</div>
+        <h2 class="section-title text-[clamp(2rem,4vw,3rem)] max-w-3xl">La preuve derrière notre travail.</h2>
+      </div>
+      <div class="stats-grid stagger-reveal">
+        <div class="stats-box scroll-fade">
+          <span class="stats-index">//001</span>
+          <div class="stats-number count-up" data-count="120" data-suffix="+">0+</div>
+          <div class="text-[11px] font-mono text-muted uppercase tracking-widest mt-2">Projets livrés</div>
+        </div>
+        <div class="stats-box scroll-fade">
+          <span class="stats-index">//002</span>
+          <div class="stats-number count-up" data-count="99" data-suffix="%">0%</div>
+          <div class="text-[11px] font-mono text-muted uppercase tracking-widest mt-2">Satisfaction client</div>
+        </div>
+        <div class="stats-box scroll-fade">
+          <span class="stats-index">//003</span>
+          <div class="stats-number count-up" data-count="3" data-suffix="+">0+</div>
+          <div class="text-[11px] font-mono text-muted uppercase tracking-widest mt-2">Ans d'expérience</div>
+        </div>
+        <div class="stats-box scroll-fade">
+          <span class="stats-index">//004</span>
+          <div class="stats-number count-up" data-count="4.9" data-suffix="★">0★</div>
+          <div class="text-[11px] font-mono text-muted uppercase tracking-widest mt-2">Avis clients</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TEAM ═══════════════════ -->
+  <section class="py-28 md:py-36 bg-bg relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="scroll-fade mb-16">
+        <div class="section-label">05 / L'ÉQUIPE</div>
+        <h2 class="section-title text-[clamp(2rem,4vw,3rem)] max-w-3xl">Pas de visages sérieux. Un vrai travail sérieux.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-reveal">
+        {teamMembers.map((member) => (
+          <div class="scroll-fade">
+            <div class="aspect-square rounded-xl overflow-hidden bg-border mb-4">
+              <img src={member.image} alt={member.name} class="team-photo w-full h-full object-cover" loading="lazy" />
+            </div>
+            <p class="font-syne font-bold text-sm text-white">{member.name}</p>
+            <p class="text-[11px] font-mono text-muted mt-1">{member.role}</p>
+            <div class="flex items-center justify-between mt-3 pt-3 border-t border-border">
+              <span class="text-lg font-syne font-bold text-white">{member.kpi}</span>
+              <span class="text-[9px] font-mono text-muted tracking-widest">{member.kpiLabel}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FAQ ═══════════════════ -->
+  <section class="py-28 md:py-36 bg-[#030F30] relative overflow-hidden">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12">
+      <div class="scroll-fade mb-16 text-center">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title text-[clamp(2rem,4vw,3rem)]">Des doutes ? Des réponses.</h2>
+      </div>
+      <div class="stagger-reveal">
+        {faqs.map((faq) => (
+          <div class="faq-item scroll-fade">
+            <div class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p class="text-muted text-sm font-dm font-light leading-relaxed">{faq.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+  <section class="py-28 md:py-36 bg-bg relative overflow-hidden border-t border-border">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="scroll-fade mb-16">
+        <div class="section-label">06 / TÉMOIGNAGES</div>
+        <h2 class="section-title text-[clamp(2rem,4vw,3rem)] max-w-3xl">Ce qu'ils disent de nous.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 stagger-reveal">
+        {testimonials.map((t) => (
+          <div class="scroll-fade p-8 border border-border" style="border-radius: 0;">
+            <p class="text-muted text-sm font-dm font-light leading-relaxed mb-6 italic">"{t.text}"</p>
+            <div>
+              <p class="font-syne font-bold text-sm text-white">{t.name}</p>
+              <p class="text-[10px] font-mono text-muted uppercase tracking-wider mt-1">{t.company}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA ═══════════════════ -->
+  <section class="py-28 md:py-36 bg-bg relative overflow-hidden border-t border-border">
+    <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+      <div class="scroll-fade">
+        <div class="section-label">// CONTACT</div>
+        <h2 class="section-title text-[clamp(2.5rem,5vw,4rem)] max-w-4xl mx-auto mb-8">
+          Prêt à créer quelque chose<br />de <span class="text-teal">grand</span> ?
+        </h2>
+        <p class="text-muted text-base max-w-lg mx-auto mb-10 font-dm font-light">
+          Discutons de votre projet et trouvons ensemble la meilleure solution pour votre marque.
+        </p>
+        <a href={base + "contact"} class="btn-primary text-base !px-12 !py-5">
+          C'est parti ! →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CLOCK SCRIPT ═══════ -->
   <script>
     function updateClock() {
-      const opts = { timeZone: 'Africa/Casablanca', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-      const el = document.getElementById('clock-display');
-      if (el) el.textContent = new Intl.DateTimeFormat('fr-FR', opts).format(new Date());
+      var opts = { timeZone: 'Africa/Casablanca', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      var el = document.getElementById('live-clock');
+      if (el) el.textContent = new Intl.DateTimeFormat('fr-FR', opts).format(new Date()) + ' UTC+1 MARRAKECH';
     }
     updateClock();
     setInterval(updateClock, 1000);
-  </script>
-
-  <!-- FAQ Toggle Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.faq-toggle').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const target = document.getElementById(btn.dataset.target);
-          const plus = btn.querySelector('.plus-sign');
-          if (target) {
-            target.classList.toggle('hidden');
-            plus.textContent = target.classList.contains('hidden') ? '+' : '−';
-          }
-        });
-      });
-    });
-  </script>
-
-  <!-- 3D Hero Animation -->
-  <script>
-    import AtlasHero3D from '../components/ThreeBackground.js';
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('hero-3d');
-      if (container && window.innerWidth > 768) {
-        new AtlasHero3D(container);
-      } else if (container) {
-        container.style.background = 'radial-gradient(ellipse at center, rgba(85,50,228,0.1) 0%, transparent 70%)';
-      }
-    });
   </script>
 </Layout>

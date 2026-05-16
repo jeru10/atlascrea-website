@@ -1,9 +1,5 @@
 ---
 import '../styles/global.css';
-import '../styles/micro-interactions.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import WhatsAppBtn from '../components/WhatsAppBtn.astro';
 import SEO from '../components/SEO.astro';
 
 export interface Props {
@@ -25,234 +21,304 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/');
     <link rel="apple-touch-icon" href={base + "images/logo.png"} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
     <SEO title={title} description={description} ogImage={ogImage} />
   </head>
-  <body class="font-figtree bg-brand-navy text-white antialiased">
-    <!-- Preloader -->
-    <div id="preloader" class="preloader">
-      <div class="preloader-inner">
-        <div class="preloader-brand">
-          <div class="preloader-dot"></div>
-          <span style="font-family:'Figtree',sans-serif;font-weight:700;color:white;font-size:18px;letter-spacing:-0.02em;">ATLAS CREA</span>
+  <body>
+    <!-- ═══════ LOADER ═══════ -->
+    <div id="loader" class="loader">
+      <div class="loader-title">ATLAS CREA</div>
+      <div class="loader-bar-track">
+        <div id="loader-bar" class="loader-bar-fill"></div>
+      </div>
+      <div id="loader-counter" class="loader-counter">0%</div>
+    </div>
+
+    <!-- ═══════ NAVBAR ═══════ -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 lg:px-12 transition-all duration-500" style="background: transparent;">
+      <nav class="flex items-center justify-between h-20 max-w-7xl mx-auto">
+        <a href={base} class="font-syne font-bold text-white text-lg tracking-tight">ATLAS CREA</a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href={base} class="nav-link text-[11px] font-mono uppercase tracking-[0.2em] text-muted hover:text-teal transition-colors duration-300">
+            <span>Accueil</span>
+            <span class="nav-hover">Accueil</span>
+          </a>
+          <a href={base + "services"} class="nav-link text-[11px] font-mono uppercase tracking-[0.2em] text-muted hover:text-teal transition-colors duration-300">
+            <span>Services</span>
+            <span class="nav-hover">Services</span>
+          </a>
+          <a href={base + "about"} class="nav-link text-[11px] font-mono uppercase tracking-[0.2em] text-muted hover:text-teal transition-colors duration-300">
+            <span>À Propos</span>
+            <span class="nav-hover">À Propos</span>
+          </a>
+          <a href={base + "portfolio"} class="nav-link text-[11px] font-mono uppercase tracking-[0.2em] text-muted hover:text-teal transition-colors duration-300">
+            <span>Réalisations</span>
+            <span class="nav-hover">Réalisations</span>
+          </a>
+          <a href={base + "pricing"} class="nav-link text-[11px] font-mono uppercase tracking-[0.2em] text-muted hover:text-teal transition-colors duration-300">
+            <span>Pricing</span>
+            <span class="nav-hover">Pricing</span>
+          </a>
         </div>
-        <div class="preloader-bar-track">
-          <div id="preloader-bar" class="preloader-bar-fill"></div>
+        <div class="flex items-center gap-4">
+          <a href={base + "contact"} class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 text-[11px] font-syne font-bold tracking-[0.15em] uppercase text-white border border-border rounded-none hover:bg-blue hover:border-blue transition-all duration-300">
+            Contact →
+          </a>
+          <button id="menu-toggle" class="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5 z-50" aria-label="Menu">
+            <span class="block w-6 h-px bg-white/60 transition-all duration-300"></span>
+            <span class="block w-6 h-px bg-white/60 transition-all duration-300"></span>
+            <span class="block w-6 h-px bg-white/60 transition-all duration-300"></span>
+          </button>
         </div>
-        <div class="preloader-info">
-          <span id="preloader-text" class="preloader-text">Initialisation...</span>
-          <span id="preloader-percent" class="preloader-percent">0%</span>
-        </div>
+      </nav>
+    </header>
+
+    <!-- ═══════ MOBILE MENU ═══════ -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-bg/98 backdrop-blur-xl flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 md:hidden">
+      <div class="flex flex-col items-center gap-8">
+        {[
+          { name: 'Accueil', href: base },
+          { name: 'Services', href: base + 'services' },
+          { name: 'À Propos', href: base + 'about' },
+          { name: 'Réalisations', href: base + 'portfolio' },
+          { name: 'Pricing', href: base + 'pricing' },
+        ].map((link, i) => (
+          <a href={link.href} class="text-3xl font-syne font-bold text-white/80 hover:text-teal transition-colors duration-300 tracking-tight" style={{ transitionDelay: `${i * 0.08}s` }}>
+            {link.name}
+          </a>
+        ))}
+        <a href={base + "contact"} class="mt-8 btn-primary text-base !px-12 !py-4">
+          Démarrer un projet →
+        </a>
       </div>
     </div>
 
-    <!-- Custom Cursor -->
-    <div id="custom-cursor">
-      <div class="cursor-dot" id="cursor-dot"></div>
-      <div class="cursor-ring" id="cursor-ring"></div>
-    </div>
-
-    <Header />
+    <!-- ═══════ MAIN ═══════ -->
     <main class="min-h-screen">
       <slot />
     </main>
-    <Footer />
-    <WhatsAppBtn />
 
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="py-20 bg-bg border-t border-border">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid md:grid-cols-4 gap-12">
+          <div class="md:col-span-2">
+            <a href={base} class="font-syne font-bold text-white text-lg tracking-tight">ATLAS CREA</a>
+            <p class="text-muted text-sm font-dm font-light mt-4 max-w-sm leading-relaxed">
+              Studio créatif basé à Marrakech. Nous construisons des identités digitales qui marquent.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-[11px] font-mono uppercase tracking-[0.2em] text-muted mb-4">Navigation</h4>
+            <div class="flex flex-col gap-3">
+              {[
+                { name: 'Accueil', href: base },
+                { name: 'Services', href: base + 'services' },
+                { name: 'À Propos', href: base + 'about' },
+                { name: 'Réalisations', href: base + 'portfolio' },
+                { name: 'Pricing', href: base + 'pricing' },
+                { name: 'Contact', href: base + 'contact' },
+              ].map((link) => (
+                <a href={link.href} class="text-sm text-muted hover:text-white transition-colors font-dm font-light">{link.name}</a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h4 class="text-[11px] font-mono uppercase tracking-[0.2em] text-muted mb-4">Contact</h4>
+            <div class="flex flex-col gap-3 text-sm font-dm font-light">
+              <span class="text-muted">Marrakech, Maroc</span>
+              <a href="mailto:hello@atlascrea.ma" class="text-muted hover:text-white transition-colors">hello@atlascrea.ma</a>
+              <a href="tel:+212XXXXXXXXX" class="text-muted hover:text-white transition-colors">+212 XXXXXXXXX</a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="text-[11px] font-mono text-muted">&copy; {new Date().getFullYear()} ATLAS CREA. Tous droits réservés.</p>
+          <div class="flex items-center gap-6">
+            <a href="#" class="text-[11px] font-mono text-muted hover:text-white transition-colors">Instagram</a>
+            <a href="#" class="text-[11px] font-mono text-muted hover:text-white transition-colors">LinkedIn</a>
+            <a href="#" class="text-[11px] font-mono text-muted hover:text-white transition-colors">Behance</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════ WHATSAPP ═══════ -->
+    <a href="https://wa.me/212XXXXXXXXX" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-blue rounded-full flex items-center justify-center shadow-lg hover:bg-sky transition-colors duration-300" aria-label="WhatsApp">
+      <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- ═══════ SCRIPTS ═══════ -->
     <script is:inline>
-      // ═══════════ PRELOADER ═══════════
+      // ── LOADER ──
       (function() {
-        const preloader = document.getElementById('preloader');
-        const bar = document.getElementById('preloader-bar');
-        const percent = document.getElementById('preloader-percent');
-        const text = document.getElementById('preloader-text');
-        const phrases = ['Initialisation...', 'Chargement...', 'Calibration...', 'Prêt pour le décollage...'];
-        
-        let count = 0;
-        let phraseIdx = 0;
-        const duration = 2000;
-        const steps = 100;
-        const intervalTime = duration / steps;
-
-        // Text cycler
-        setInterval(() => {
-          phraseIdx = (phraseIdx + 1) % phrases.length;
-          if (text) text.textContent = phrases[phraseIdx];
-        }, 500);
-
-        // Counter
-        const timer = setInterval(() => {
+        var loader = document.getElementById('loader');
+        var bar = document.getElementById('loader-bar');
+        var counter = document.getElementById('loader-counter');
+        var count = 0;
+        var steps = 100;
+        var interval = 2200 / steps;
+        var timer = setInterval(() => {
           count++;
           if (bar) bar.style.width = count + '%';
-          if (percent) percent.textContent = count + '%';
+          if (counter) counter.textContent = count + '%';
           if (count >= 100) {
             clearInterval(timer);
-            // Exit preloader
             setTimeout(() => {
-              preloader.classList.add('preloader-slide-up');
-              setTimeout(() => {
-                preloader.style.display = 'none';
-                // Enable custom cursor after preloader
-                document.body.classList.add('cursor-loaded');
-              }, 800);
-            }, 400);
+              loader.classList.add('hidden');
+            }, 300);
           }
-        }, intervalTime);
+        }, interval);
       })();
 
-      // ═══════════ CUSTOM CURSOR ═══════════
+      // ── NAVBAR SCROLL ──
       (function() {
+        var nav = document.getElementById('navbar');
+        var ticking = false;
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            requestAnimationFrame(function() {
+              if (window.scrollY > 80) {
+                nav.style.background = 'rgba(2,14,38,0.85)';
+                nav.style.backdropFilter = 'blur(20px)';
+              } else {
+                nav.style.background = 'transparent';
+                nav.style.backdropFilter = 'none';
+              }
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+      })();
+
+      // ── MOBILE MENU ──
+      (function() {
+        var toggle = document.getElementById('menu-toggle');
+        var menu = document.getElementById('mobile-menu');
+        var open = false;
+        if (!toggle || !menu) return;
+        toggle.addEventListener('click', function() {
+          open = !open;
+          menu.style.opacity = open ? '1' : '0';
+          menu.style.pointerEvents = open ? 'auto' : 'none';
+          toggle.classList.toggle('active');
+        });
+        menu.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            open = false;
+            menu.style.opacity = '0';
+            menu.style.pointerEvents = 'none';
+            toggle.classList.remove('active');
+          });
+        });
+      })();
+
+      // ── HERO MOUSE GLOW ──
+      (function() {
+        var glow = document.querySelector('.hero-glow');
+        if (!glow) return;
         var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-        if (isTouch) return;
-
-        var dot = document.getElementById('cursor-dot');
-        var ring = document.getElementById('cursor-ring');
-
+        if (isTouch) { glow.style.display = 'none'; return; }
         document.addEventListener('mousemove', function(e) {
           var x = e.clientX;
           var y = e.clientY;
-          if (dot) {
-            dot.style.left = x - 4 + 'px';
-            dot.style.top = y - 4 + 'px';
-          }
-          if (ring) {
-            // Use CSS transition on #cursor-ring for smooth follow
-            ring.style.left = x - 20 + 'px';
-            ring.style.top = y - 20 + 'px';
-          }
-        });
-
-        // Hover effect on interactive elements
-        document.addEventListener('mouseover', (e) => {
-          const target = e.target.closest('a, button, [role="button"], input, textarea, select, [data-cursor="pointer"]');
-          if (target) {
-            document.body.classList.add('cursor-hover');
-          }
-          const viewTarget = e.target.closest('[data-cursor="view"]');
-          if (viewTarget) {
-            document.body.classList.remove('cursor-hover');
-            document.body.classList.add('cursor-view');
-          }
-        });
-        document.addEventListener('mouseout', (e) => {
-          const target = e.target.closest('a, button, [role="button"], input, textarea, select, [data-cursor="pointer"]');
-          if (target) {
-            document.body.classList.remove('cursor-hover');
-          }
-          const viewTarget = e.target.closest('[data-cursor="view"]');
-          if (viewTarget) {
-            document.body.classList.remove('cursor-view');
-          }
+          glow.style.left = x + 'px';
+          glow.style.top = y + 'px';
         });
       })();
 
-      // ═══════════ MAGNETIC BUTTONS ═══════════
+      // ── HERO REVEAL (staggered) ──
       (function() {
-        document.querySelectorAll('.magnetic-btn').forEach(btn => {
-          btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
-            const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
-            btn.style.transform = `translate(${x}px, ${y}px)`;
-          });
-          btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-          });
+        var els = document.querySelectorAll('.hero-reveal');
+        els.forEach(function(el, i) {
+          var delay = parseFloat(el.dataset.delay || (0.8 + i * 0.15)) * 1000;
+          setTimeout(function() {
+            el.classList.add('revealed');
+          }, delay);
         });
       })();
 
-      // ═══════════ HERO FLOATING ORB (Mouse follower) ═══════════
+      // ── WORD-BY-WORD REVEAL ──
       (function() {
-        const orb = document.getElementById('hero-orb');
-        if (!orb) return;
-        const hero = orb.closest('section');
-        if (!hero) return;
-
-        hero.addEventListener('mousemove', (e) => {
-          const rect = hero.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          orb.style.transform = `translate(${x - 250}px, ${y - 250}px)`;
+        var containers = document.querySelectorAll('.word-reveal');
+        containers.forEach(function(c) {
+          var delay = parseFloat(c.dataset.delay || '1');
+          setTimeout(function() {
+            c.classList.add('revealed');
+          }, delay * 1000);
         });
       })();
 
-      // ═══════════ HERO GEOMETRIC SHAPES (Mouse parallax) ═══════════
+      // ── SCROLL OBSERVER ──
       (function() {
-        const shapes = document.querySelectorAll('.hero-shape');
-        if (!shapes.length) return;
-        const hero = shapes[0].closest('section');
-        if (!hero) return;
-
-        hero.addEventListener('mousemove', (e) => {
-          const rect = hero.getBoundingClientRect();
-          const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-          const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-          
-          shapes.forEach((shape, i) => {
-            const speed = shape.dataset.speed || 1;
-            shape.style.transform = `translate(${x * 20 * speed}px, ${y * 20 * speed}px)`;
+        if (typeof IntersectionObserver === 'undefined') return;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
           });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.scroll-fade, .scroll-fade-left, .scroll-fade-right, .scroll-scale').forEach(function(el) {
+          observer.observe(el);
         });
-      })();
-
-      // ═══════════ HERO REVEAL (kept for compatibility) ═══════════
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.hero-reveal').forEach((el, i) => {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        // Stagger children
+        document.querySelectorAll('.stagger-reveal').forEach(function(parent) {
+          var children = parent.children;
+          observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
               if (entry.isIntersecting) {
-                setTimeout(() => {
-                  el.classList.add('revealed');
-                }, i * 150);
+                Array.from(children).forEach(function(child, i) {
+                  setTimeout(function() {
+                    child.classList.add('revealed');
+                  }, i * 80);
+                });
                 observer.unobserve(entry.target);
               }
             });
-          });
+          }, { threshold: 0.15 });
+          observer.observe(parent);
+        });
+        // Counter observer
+        document.querySelectorAll('.count-up').forEach(function(el) {
+          observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                var target = parseFloat(el.dataset.count || '0');
+                var suffix = el.dataset.suffix || '';
+                var current = 0;
+                var duration = 1800;
+                var start = performance.now();
+                function tick(now) {
+                  var elapsed = now - start;
+                  var progress = Math.min(elapsed / duration, 1);
+                  var eased = 1 - Math.pow(1 - progress, 3);
+                  var val = eased * target;
+                  el.textContent = (Number.isInteger(target) ? Math.round(val) : val.toFixed(1)) + suffix;
+                  if (progress < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.5 });
           observer.observe(el);
         });
-      });
-    </script>
+      })();
 
-    <!-- Lenis Smooth Scroll + Three.js scroll pause (bundled from npm) -->
-    <script>
-      import Lenis from 'lenis';
-      document.addEventListener('DOMContentLoaded', () => {
-        try {
-          document.documentElement.classList.add('lenis');
-          const lenis = new Lenis({
-            duration: 0.4,
-            easing: (t) => 1 - Math.pow(1 - t, 3),
-            smoothWheel: true,
-            wheelMultiplier: 2,
-            touchMultiplier: 1.5,
+      // ── FAQ ──
+      (function() {
+        document.querySelectorAll('.faq-question').forEach(function(q) {
+          q.addEventListener('click', function() {
+            var item = q.closest('.faq-item');
+            var isActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(function(f) { f.classList.remove('active'); });
+            if (!isActive) item.classList.add('active');
           });
-          window.__lenis = lenis;
-
-          // ═══ Pause Three.js while scrolling ═══
-          let scrollTimer = null;
-          lenis.on('scroll', () => {
-            window.__lenisScrolling = true;
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-              window.__lenisScrolling = false;
-            }, 100); // 100ms after scroll stops
-          });
-
-          // Lenis own RAF
-          function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-          }
-          requestAnimationFrame(raf);
-        } catch(e) {
-          document.documentElement.classList.remove('lenis');
-        }
-      });
-    </script>
-
-    <!-- GSAP + ScrollTrigger Pro Animations (bundled from npm) -->
-    <script>
-      import '../scripts/gsap-animations.js';
+        });
+      })();
     </script>
   </body>
 </html>
