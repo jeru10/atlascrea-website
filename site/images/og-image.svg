@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Atlas Crea">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020E26" />
+      <stop offset="45%" stop-color="#10285E" />
+      <stop offset="100%" stop-color="#3654E3" />
+    </linearGradient>
+    <radialGradient id="glow1" cx="78%" cy="24%" r="44%">
+      <stop offset="0%" stop-color="#2DA8E2" stop-opacity=".36" />
+      <stop offset="100%" stop-color="#2DA8E2" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow2" cx="18%" cy="82%" r="42%">
+      <stop offset="0%" stop-color="#22D3C5" stop-opacity=".26" />
+      <stop offset="100%" stop-color="#22D3C5" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow1)" />
+  <rect width="1200" height="630" fill="url(#glow2)" />
+  <g fill="#F0EEE8">
+    <text x="88" y="170" font-family="Syne, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="2">ATLAS CREA</text>
+    <text x="88" y="320" font-family="Syne, Arial, sans-serif" font-size="110" font-weight="800">Des identités</text>
+    <text x="88" y="425" font-family="Syne, Arial, sans-serif" font-size="110" font-weight="800" fill="#22D3C5">digitales</text>
+    <text x="620" y="425" font-family="Syne, Arial, sans-serif" font-size="110" font-weight="800" fill="#F0EEE8">qui</text>
+    <text x="88" y="530" font-family="Syne, Arial, sans-serif" font-size="110" font-weight="800">marquent.</text>
+  </g>
+</svg>

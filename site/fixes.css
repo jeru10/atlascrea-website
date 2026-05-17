@@ -1,0 +1,100 @@
+#hero {
+  isolation: isolate;
+}
+
+.hero-mesh {
+  --hero-shift-y: 0px;
+  --hero-focus-x: 50%;
+  --hero-focus-y: 38%;
+  background:
+    radial-gradient(42% 42% at var(--hero-focus-x) var(--hero-focus-y), rgba(84, 121, 255, 0.18) 0%, rgba(84, 121, 255, 0.04) 34%, transparent 68%),
+    radial-gradient(58% 52% at 78% 24%, rgba(45, 168, 226, 0.18) 0%, transparent 62%),
+    radial-gradient(46% 54% at 14% 78%, rgba(34, 211, 197, 0.14) 0%, transparent 58%),
+    linear-gradient(145deg, #020e26 0%, #071537 36%, #0c1f4a 62%, #020e26 100%);
+  transform: translate3d(0, var(--hero-shift-y), 0) scale(1.02);
+  transform-origin: center center;
+  transition: background 220ms ease-out, filter 220ms ease-out, transform 220ms ease-out;
+  filter: saturate(112%);
+}
+
+.hero-mesh::before,
+.hero-mesh::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-mesh::before {
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.05) 0%, transparent 28%),
+    radial-gradient(50% 60% at 50% 100%, rgba(54, 84, 227, 0.14) 0%, transparent 72%);
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.hero-mesh::after {
+  background:
+    linear-gradient(180deg, rgba(2, 14, 38, 0) 0%, rgba(2, 14, 38, 0.08) 62%, rgba(2, 14, 38, 0.44) 100%),
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.08) 0%, transparent 28%);
+}
+
+.hero-grain {
+  opacity: 0.045;
+  mix-blend-mode: soft-light;
+}
+
+.hero-glow {
+  width: min(38vw, 420px);
+  height: min(38vw, 420px);
+  background: radial-gradient(circle, rgba(54, 84, 227, 0.18) 0%, rgba(45, 168, 226, 0.08) 30%, transparent 72%);
+  opacity: 0.9;
+}
+
+.portfolio-card {
+  background: linear-gradient(180deg, rgba(14, 28, 49, 0.95) 0%, rgba(8, 18, 35, 0.98) 100%);
+  border-color: rgba(240, 238, 232, 0.08);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.16);
+  transform-style: preserve-3d;
+}
+
+.portfolio-card:hover {
+  border-color: rgba(54, 84, 227, 0.72);
+}
+
+.portfolio-card img {
+  height: 220px;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.portfolio-card:hover img {
+  filter: brightness(1.08) saturate(1.06);
+}
+
+.team-photo,
+.team-photo-ready {
+  filter: grayscale(0.18) contrast(1.02);
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.team-photo:hover,
+.team-photo-ready:hover {
+  filter: grayscale(0);
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .hero-mesh {
+    transform: scale(1.01);
+    background:
+      radial-gradient(52% 42% at 50% 24%, rgba(84, 121, 255, 0.2) 0%, transparent 62%),
+      radial-gradient(65% 50% at 82% 18%, rgba(45, 168, 226, 0.13) 0%, transparent 58%),
+      radial-gradient(58% 52% at 14% 84%, rgba(34, 211, 197, 0.11) 0%, transparent 52%),
+      linear-gradient(165deg, #020e26 0%, #08183c 45%, #020e26 100%);
+  }
+
+  .hero-glow {
+    width: 260px;
+    height: 260px;
+  }
+}
